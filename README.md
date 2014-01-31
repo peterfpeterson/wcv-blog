@@ -1,4 +1,5 @@
-wcv-blog
-========
+The actual site is at http://peterfpeterson.github.io/wcv-blog/
 
-Jekyll site
+To get this running locally
+
+   bundle exec jekyll serve --watch --drafts --baseurl=''
