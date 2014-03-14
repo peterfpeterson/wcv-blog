@@ -7,8 +7,6 @@
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.7">
-    <!-- hotlink d3 into every page -->
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   </head>
   <body>
     <div id="main">
@@ -23,18 +21,39 @@
 
 <p>If you need any help with customizing your nanoc web site, be sure to check out the documentation (see sidebar), and be sure to subscribe to the discussion group (also see sidebar). Enjoy!</p>
 
-<center><div id="chart">
-<script type="text/javascript">
+<!-- hotlink d3 into the page -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<style>
+
+#chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+</style>
+
+<div id="chart"></div>
+<script>
+
 var data = [4, 8, 15, 16, 23, 42];
-d3.select(".chart")
-.selectAll("div")
-    .data(data)
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(data)])
+    .range([0, 420]);
+
+d3.select("#chart")
+  .selectAll("div")
+  .data(data)
   .enter().append("div")
-    .style("width", function(d) { return d * 10 + "px"; })
-    .text(function(d) { return d; });
+  .style("width", function(d) { return x(d) + "px"; })
+  .text(function(d) { return d; });
+
 </script>
-</div>
-</center>
     </div>
     <div id="sidebar">
       <h2>Documentation</h2>
