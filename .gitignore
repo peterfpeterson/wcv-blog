@@ -1,0 +1,4 @@
+# ignore the generated directory as it is at a different site
+output
+# emacs backup files
+*~
