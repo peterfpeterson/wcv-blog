@@ -1,39 +1,39 @@
-Time	Name	Nationality	Date	Event/Place	Source	Notes
-5:40	Marie-Louise Ledru	 France	September 29, 1918	Tour de Paris Marathon
-3:40:22	Violet Piercy		  United Kingdom  October 3, 1926    London
-3:37:07	Merry Lepper		   United States  December 16, 1963   Culver City, United States
-3:27:45	Dale Greig		    United Kingdom	   May 23, 1964	    Ryde
-3:19:33	Mildred Sampson		     New Zealand	   July 21, 1964[nb 9]	   Auckland, New Zealand
-3:15:23	Maureen Wilton		      Canada		   May 6, 1967	    Toronto, Canada
-3:07:27.2	Anni Pede-Erdkamp      West Germany	   September 16, 1967	     Waldniel, West Germany
-3:02:53		Caroline Walker	        United States	   February 28, 1970	     Seaside, OR
-3:01:42		Elizabeth Bonner	 United States	   May 9, 1971	Philadelphia, United States
-2:55:22		Elizabeth Bonner	  United States	   September 19, 1971	      New York City Marathon
-2:49:40		Cheryl Bridges		   United States   December 5, 1971	      Culver City, United States
-2:46:36		Michiko Gorman		    United States  December 2, 1973	      Culver City, United States
-2:46:24		Chantal Langlacé	     France	   October 27, 1974	      Neuf-Brisach, France
-2:43:54.5	Jacqueline Hansen	      United States	   December 1, 1974   Culver City, United States
-2:42:24		Liane Winter		       West Germany	   April 21, 1975     Boston Marathon
-2:40:15.8	Christa Vahlensieck	        West Germany	   May 3, 1975	      Dülmen
-2:38:19		Jacqueline Hansen		 United States	   October 12, 1975   Eugene, United States
-2:35:15.4	Chantal Langlacé		  France	   May 1, 1977 Oiartzun, Spain
-2:34:47.5	Christa Vahlensieck		   West Germany	   September 10, 1977	 Berlin Marathon
-2:32:29.8	Grete Waitz			    Norway	   October 22, 1978	 New York City Marathon
-2:27:32.6	Grete Waitz			     Norway	   October 21, 1979	 New York City Marathon
-2:31:23		Joan Benoit			      United States	   February 3, 1980  Auckland, New Zealand
-2:30:57.1	Patti Catalano			       United States	   September 6, 1980 Montreal, Canada
-2:25:41.3	Grete Waitz			        Norway		   October 26, 1980  New York City Marathon
-2:30:27		Joyce Smith				 United Kingdom	   November 16, 1980 Tokyo, Japan
-2:29:57		Joyce Smith				  United Kingdom   March 29, 1981    London Marathon
-2:29:01.6	Charlotte Teske				   West Germany	   January 16, 1982  Miami, United States
-2:26:12		Joan Benoit				    United States  September 12, 1982	    Eugene, United States
-2:25:28.7	Grete Waitz				     Norway	   April 17, 1983	    London Marathon
-2:22:43		Joan Benoit				      United States	 April 18, 1983	    Boston Marathon
-2:24:26		Ingrid Kristiansen			       Norway		 May 13, 1984	    London Marathon
-2:21:06		Ingrid Kristiansen			        Norway		 April 21, 1985	    London Marathon
-2:20:47		Tegla Loroupe					 Kenya		 April 19, 1998	    Rotterdam Marathon
-2:20:43		Tegla Loroupe					  Kenya		 September 26, 1999 Berlin Marathon
-2:19:46		Naoko Takahashi					   Japan	 September 30, 2001 Berlin Marathon
-2:18:47		Catherine Ndereba				    Kenya	 October 7, 2001    Chicago Marathon
-2:17:18		Paula Radcliffe					     United Kingdom	 October 13, 2002   Chicago Marathon
-2:15:25		Paula Radcliffe					      United Kingdom	 April 13, 2003	    London Marathon
+Time,Name,Nationality,Date,Event/Place
+5:40,Marie-Louise Ledru,France,09/29/1918,Tour de Paris Marathon
+3:40:22,Violet Piercy,United Kingdom,10/03/1926,London
+3:37:07,Merry Lepper,United States,12/16/1963,Culver City United States
+3:27:45,Dale Greig,United Kingdom,05/23/1964,Ryde
+3:19:33,Mildred Sampson,New Zealand,07/21/1964,Auckland New Zealand
+3:15:23,Maureen Wilton,Canada,05/06/1967,Toronto Canada
+3:07:27,Anni Pede-Erdkamp,West Germany,09/16/1967,Waldniel West Germany
+3:02:53,Caroline Walker,United States,02/28/1970,Seaside OR
+3:01:42,Elizabeth Bonner,United States,05/09/1971,Philadelphia United States
+2:55:22,Elizabeth Bonner,United States,09/19/1971,New York City Marathon
+2:49:40,Cheryl Bridges,United States,12/05/1971,Culver City United States
+2:46:36,Michiko Gorman,United States,12/02/1973,Culver City United States
+2:46:24,Chantal Langlacé,France,10/27/1974,Neuf-Brisach France
+2:43:54,Jacqueline Hansen,United States,12/01/1974,Culver City United States
+2:42:24,Liane Winter,West Germany,04/21/1975,Boston Marathon
+2:40:15,Christa Vahlensieck,West Germany,05/03/1975,Dülmen
+2:38:19,Jacqueline Hansen,United States,10/12/1975,Eugene United States
+2:35:15,Chantal Langlacé,France,05/01/1977,Oiartzun Spain
+2:34:47,Christa Vahlensieck,West Germany,09/10/1977,Berlin Marathon
+2:32:29,Grete Waitz,Norway,10/22/1978,New York City Marathon
+2:27:32,Grete Waitz,Norway,10/21/1979,New York City Marathon
+2:31:23,Joan Benoit,United States,02/03/1980,Auckland New Zealand
+2:30:57,Patti Catalano,United States,09/06/1980,Montreal Canada
+2:25:41,Grete Waitz,Norway,10/26/1980,New York City Marathon
+2:30:27,Joyce Smith,United Kingdom,11/16/1980,Tokyo Japan
+2:29:57,Joyce Smith,United Kingdom,03/29/1981,London Marathon
+2:29:01,Charlotte Teske,West Germany,01/16/1982,Miami United States
+2:26:12,,Joan Benoit,United States,09/12/1982,Eugene United States
+2:25:28,Grete Waitz,Norway,04/17/1983,London Marathon
+2:22:43,Joan Benoit,United States,04/18/1983,Boston Marathon
+2:24:26,Ingrid Kristiansen,Norway,05/13/1984,London Marathon
+2:21:06,Ingrid Kristiansen,Norway,04/21/1985,London Marathon
+2:20:47,Tegla Loroupe,Kenya,04/19/1998,Rotterdam Marathon
+2:20:43,Tegla Loroupe,Kenya,09/26/1999,Berlin Marathon
+2:19:46,Naoko Takahashi,Japan,09/30/2001,Berlin Marathon
+2:18:47,Catherine Ndereba,Kenya,10/07/2001,Chicago Marathon
+2:17:18,Paula Radcliffe,United Kingdom,10/13/2002,Chicago Marathon
+2:15:25,Paula Radcliffe,United Kingdom,04/13/2003,London Marathon
