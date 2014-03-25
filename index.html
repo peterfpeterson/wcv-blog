@@ -24,7 +24,7 @@
 <!-- hotlink d3 into the page -->
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
-<!-- marthon records plot -->
+<!-- marathon records plot -->
 <style>
 
 .axis path,
@@ -85,7 +85,7 @@ var svg = d3.select("#marathon_rec").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("marthon_men.csv", function(error, data) {
+d3.csv("marathon_men.csv", function(error, data) {
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
   data.forEach(function(d) {
