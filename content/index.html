@@ -84,8 +84,8 @@ d3.csv("marathon_men.csv",
       time: parseTime(d.time)
     };
   }, function(error, data) {
-  console.log("men's record");
-  console.log(data);
+  //console.log("men's record");
+  //console.log(data);
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
