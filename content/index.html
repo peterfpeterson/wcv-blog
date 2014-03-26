@@ -16,7 +16,7 @@ title: Home
 <!-- hotlink d3 into the page -->
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
-<!-- marthon records plot -->
+<!-- marathon records plot -->
 <style>
 
 .axis path,
@@ -77,13 +77,17 @@ var svg = d3.select("#marathon_rec").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("marthon_men.csv", function(error, data) {
-  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+d3.csv("marathon_men.csv", 
+  function(d) {
+    return {
+      date: parseDate(d.date),
+      time: parseTime(d.time)
+    };
+  }, function(error, data) {
+  console.log("men's record");
+  console.log(data);
 
-  data.forEach(function(d) {
-    d.date = parseDate(d.date);
-    d.time = parseTime(d.time);
-  });
+  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
   /*
   document.write("<ul>");
