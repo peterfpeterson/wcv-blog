@@ -31,7 +31,6 @@ there in time to exchange runners with a minimum of effort.</p>
 
 .line {
   fill: none;
-  stroke: steelblue;
   stroke-width: 1.5px;
 }
 
@@ -114,7 +113,8 @@ d3.csv("marathon_men.csv",
   svg.append("path")
      .datum(data)
      .attr("class", "line")
-     .attr("d", line);
+     .attr("d", line)
+     .style("stroke", "steelblue");
 });
 
 d3.csv("marathon_women.csv", 
@@ -132,7 +132,8 @@ d3.csv("marathon_women.csv",
   svg.append("path")
      .datum(data)
      .attr("class", "line")
-     .attr("d", line);
+     .attr("d", line)
+     .style("stroke", "tomato");
 });
 
   /*
