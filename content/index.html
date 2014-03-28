@@ -40,8 +40,6 @@ there in time to exchange runners with a minimum of effort.</p>
 
 <script>
 
-console.log(d3.select("#marathon_rec").style("width"));
-
 var div_width = parseInt(d3.select("#marathon_rec").style("width"))
 var margin = {top: 10, right: 10, bottom: 30, left: 60},
     width = div_width - margin.left - margin.right,
@@ -73,8 +71,8 @@ var yAxis = d3.svg.axis()
 
 var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.time); });
-//    .interpolate("basis")
+    .y(function(d) { return y(d.time); })
+    .interpolate("step-after");
 
 var svg = d3.select("#marathon_rec").append("svg")
     .attr("width", width + margin.left + margin.right)
