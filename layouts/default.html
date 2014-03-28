@@ -9,9 +9,6 @@
     <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
   </head>
   <body>
-    <div id="main">
-      <%= yield %>
-    </div>
     <div id="sidebar">
       <h2>Documentation</h2>
       <ul>
@@ -24,6 +21,9 @@
         <li><a href="irc://chat.freenode.net/#nanoc">IRC Channel</a></li>
         <li><a href="http://github.com/nanoc/nanoc/wiki/">Wiki</a></li>
       </ul>
+    </div>
+    <div id="main">
+      <%= yield %>
     </div>
   </body>
 </html>
