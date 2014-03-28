@@ -4,7 +4,7 @@ title: Home
 
 <h1>White Cargo Van</h1>
 
-<h2>Helping friends find sweaty friends in the dark</h2>
+<em>Helping friends find sweaty friends in the dark</em>
 
 <p>This is a site dedicated to overnight relays and the logistics involved in planning and 
 executing one. Hopefully you will be able find a race, plan when the exchanges are, and get
@@ -41,19 +41,25 @@ there in time to exchange runners with a minimum of effort.</p>
 
 <script>
 
-var margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = 700 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+console.log(d3.select("#marathon_rec").style("width"));
+
+var div_width = parseInt(d3.select("#marathon_rec").style("width"))
+var margin = {top: 10, right: 10, bottom: 30, left: 60},
+    width = div_width - margin.left - margin.right,
+    height = (div_width * 4 / 7) - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%x").parse; // date, as "%m/%d/%Y"
 
 var parseTime = d3.time.format("%X").parse; // time, as "%H:%M:%S"
 
 var x = d3.time.scale()
-    .range([0, width]);
+    .range([0, width])
+    .domain([new Date(1908, 06, 20), new Date()]);
 
 var y = d3.time.scale()
-    .range([height, 0]);
+    .range([height, 0])
+    .domain([new Date("Jan 01 1900 02:00:00"), new Date("Jan 01 1900 03:45:00")])
+    //.ticks([d3.time.minute, 10]);
 
 var color = d3.scale.category10();
 
@@ -63,7 +69,8 @@ var xAxis = d3.svg.axis()
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("left");
+    .orient("left")
+    .tickFormat(d3.time.format("%H:%M"));
 
 var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
@@ -75,6 +82,22 @@ var svg = d3.select("#marathon_rec").append("svg")
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+   .attr("class", "x axis")
+   .attr("transform", "translate(0," + height + ")")
+   .attr("dy", ".71em")
+   .call(xAxis);
+
+svg.append("g")
+   .attr("class", "y axis")
+   .call(yAxis)
+   .append("text")
+   .attr("transform", "rotate(-90)")
+   .attr("y", 6)
+   .attr("dy", ".71em")
+   .style("text-anchor", "end")
+   .text("Time (HH:MM)");
 
 d3.csv("marathon_men.csv", 
   function(d) {
@@ -97,24 +120,6 @@ d3.csv("marathon_men.csv",
   });
   document.write("</ul>");
   */
-
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain(d3.extent(data, function(d) { return d.time; }));
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Time (HH:MM)");
 
   svg.append("path")
      .datum(data)
