@@ -102,17 +102,26 @@ d3.csv("marathon_men.csv",
       date: parseDate(d.date),
       time: parseTime(d.time)
     };
-  }, function(error, data) {
+  },
+  function(error, data) {
   //console.log("men's record");
   //console.log(data);
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
-  svg.append("path")
+  path = svg.append("path")
      .datum(data)
      .attr("class", "line")
      .attr("d", line)
      .style("stroke", "steelblue");
+
+  var totalLength = path.node().getTotalLength();
+  path.attr("stroke-dasharray", totalLength + " " + totalLength)
+      .attr("stroke-dashoffset", totalLength)
+      .transition()
+      .duration(2000)
+      .ease("linear")
+      .attr("stroke-dashoffset", 0);
 });
 
 d3.csv("marathon_women.csv", 
@@ -121,17 +130,26 @@ d3.csv("marathon_women.csv",
       date: parseDate(d.date),
       time: parseTime(d.time)
     };
-  }, function(error, data) {
+  },
+  function(error, data) {
   //console.log("women's record");
   //console.log(data);
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
-  svg.append("path")
+  path = svg.append("path")
      .datum(data)
      .attr("class", "line")
      .attr("d", line)
      .style("stroke", "tomato");
+
+  var totalLength = path.node().getTotalLength();
+  path.attr("stroke-dasharray", totalLength + " " + totalLength)
+      .attr("stroke-dashoffset", totalLength)
+      .transition()
+      .duration(2000)
+      .ease("linear")
+      .attr("stroke-dashoffset", 0);
 });
 
   /*
