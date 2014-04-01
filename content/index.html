@@ -93,19 +93,17 @@ var svg = d3.select("#marathon_rec").append("svg:svg")
 
 var focus_men = svg.append("g")
                    .attr("class", "focus")
-                   .style("display", "none");
-
-focus_men.append("text")
-         .attr("x", 9)
-         .attr("dy", ".35em");
+                   .style("display", "none")
+                   .append("text")
+                   .attr("x", 9)
+                   .attr("dy", ".35em");
 
 var focus_women = svg.append("g")
                      .attr("class", "focus")
-                     .style("display", "none");
-
-focus_women.append("text")
-           .attr("x", 9)
-           .attr("dy", ".35em");
+                     .style("display", "none")
+                     .append("text")
+                     .attr("x", 9)
+                     .attr("dy", ".35em");
 
 svg.append("g")
    .attr("class", "x axis")
@@ -125,6 +123,10 @@ svg.append("g")
 
 // first mens record in 1908, womens in 1926 (18 year difference)
 // last mens in 2013, womens in 2003 (10 year difference)
+var men_start = 0;
+var men_duration = (2013-1908)*20;
+var women_start = (1926-1908)*20;
+var women_duration = (2003-1926)*20;
 
 d3.csv("marathon_men.csv", 
   function(d) {
@@ -150,7 +152,8 @@ d3.csv("marathon_men.csv",
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
       .attr("stroke-dashoffset", totalLength)
       .transition()
-      .duration(2100)
+      .duration(men_duration)
+      .delay(men_start)
       .ease("linear")
       .attr("stroke-dashoffset", 0);
 
@@ -180,8 +183,8 @@ d3.csv("marathon_women.csv",
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
       .attr("stroke-dashoffset", totalLength)
       .transition()
-      .duration(1540)
-      .delay(360)
+      .duration(women_duration)
+      .delay(women_start)
       .ease("linear")
       .attr("stroke-dashoffset", 0);
 
@@ -222,7 +225,6 @@ function updateReadout(focus, data, x0)
   }
   else
   {
-    focus.style("display", "none");
     focus.style("display", "none");
   }
 }
