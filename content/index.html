@@ -34,17 +34,9 @@ there in time to exchange runners with a minimum of effort.</p>
   stroke-width: 2px;
 }
 
-div.tooltip {
-  position: absolute;
-  text-align: center;
-  width: 80px;
-  height: 30px;
-  padding: 2px;
-  font: 12px sans-serif;
-  background: lightsteelblue;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
+.overlay {
+  fill: none;
+  pointer-events: all;
 }
 
 </style>
@@ -62,7 +54,7 @@ var parseDate = d3.time.format("%x").parse; // date, as "%m/%d/%Y"
 var parseTime = d3.time.format("%X").parse; // time, as "%H:%M:%S"
 
 var dateOutFormat = d3.time.format("%d%b%Y");
-var timeOutFormat = d3.time.format("%H:%M");
+var timeOutFormat = d3.time.format("%H:%M:%S");
 
 var bisect = d3.bisector(function(datum) {
   return datum.date;
@@ -70,7 +62,7 @@ var bisect = d3.bisector(function(datum) {
 
 var x = d3.time.scale()
     .range([0, width])
-    .domain([new Date(1908, 06, 20), new Date()]);
+    .domain([new Date(1905, 06, 20), new Date()]);
 
 var y = d3.time.scale()
     .range([height, 0])
@@ -96,13 +88,24 @@ var line = d3.svg.line()
 var svg = d3.select("#marathon_rec").append("svg:svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-//    .on("mouseout", function() {
-//       div.transition()
-//          .duration(1000)
-//          .style("opacity", 0);
-//    })
     .append("svg:g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var focus_men = svg.append("g")
+                   .attr("class", "focus")
+                   .style("display", "none");
+
+focus_men.append("text")
+         .attr("x", 9)
+         .attr("dy", ".35em");
+
+var focus_women = svg.append("g")
+                     .attr("class", "focus")
+                     .style("display", "none");
+
+focus_women.append("text")
+           .attr("x", 9)
+           .attr("dy", ".35em");
 
 svg.append("g")
    .attr("class", "x axis")
@@ -120,10 +123,6 @@ svg.append("g")
    .style("text-anchor", "end")
    .text("Time (HH:MM)");
 
-var div = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
-
 // first mens record in 1908, womens in 1926 (18 year difference)
 // last mens in 2013, womens in 2003 (10 year difference)
 
@@ -131,12 +130,13 @@ d3.csv("marathon_men.csv",
   function(d) {
     return {
       date: parseDate(d.date),
-      time: parseTime(d.time)
+      time: parseTime(d.time),
     };
   },
   function(error, data) {
   //console.log("men's record");
   //console.log(data);
+  data_men = data;
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
@@ -145,19 +145,6 @@ d3.csv("marathon_men.csv",
      .attr("class", "line")
      .attr("d", line)
      .style("stroke", "steelblue");
-  path.on("mousemove", function(d) {
-        var mouse = d3.mouse(this);
-        var dateStamp = x.invert(mouse[0]);
-        var index = bisect(data, dateStamp);
-
-        div.transition()
-           .duration(200)
-           .style("opacity", .9);
-        div.html(dateOutFormat(data[index-1].date) + "<br/>"
-                 + timeOutFormat(data[index-1].time))
-           .style("left", (d3.event.pageX + 30) + "px")
-           .style("top",  (d3.event.pageY - 30) + "px");
-     });
 
   var totalLength = path.node().getTotalLength();
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
@@ -173,65 +160,77 @@ d3.csv("marathon_women.csv",
   function(d) {
     return {
       date: parseDate(d.date),
-      time: parseTime(d.time)
+      time: parseTime(d.time),
     };
   },
   function(error, data) {
   //console.log("women's record");
   //console.log(data);
 
+  data_women = data;
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
   var path = svg.append("path")
      .datum(data)
      .attr("class", "line")
      .attr("d", line)
-     .style("stroke", "tomato")
-     .on("mousemove", function(d) {
-        var mouse = d3.mouse(this);
-        var dateStamp = x.invert(mouse[0]);
-        var index = bisect(data, dateStamp);
-
-        div.transition()
-           .duration(200)
-           .style("opacity", .9);
-        div.html(dateOutFormat(data[index-1].date) + "<br/>"
-                 + timeOutFormat(data[index-1].time))
-           .style("left", (d3.event.pageX + 30) + "px")
-           .style("top",  (d3.event.pageY - 30) + "px");
-     });
+     .style("stroke", "tomato");
 
   var totalLength = path.node().getTotalLength();
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
       .attr("stroke-dashoffset", totalLength)
       .transition()
       .duration(1540)
-      .delay(560)
+      .delay(360)
       .ease("linear")
       .attr("stroke-dashoffset", 0);
+
 });
 
-  /*
-  var city = svg.selectAll(".city")
-      .data(cities)
-    .enter().append("g")
-      .attr("class", "city");
-  */
+svg.append("rect")
+   .attr("class", "overlay")
+   .attr("width", width)
+   .attr("height", height)
+   .on("mouseover", function() {
+      focus_men.style("display", null);
+      focus_women.style("display", null);
+   })
+   .on("mouseout", function() {
+      focus_men.style("display", "none");
+      focus_women.style("display", "none");
+   })
+   .on("mousemove", mousemove);
 
-  /*
-  city.append("path")
-      .attr("class", "line")
-      .attr("d", function(d) { return line(d.values); })
-      .style("stroke", function(d) { return color(d.name); });
-  */
+function updateReadout(focus, data, x0)
+{
+  var i = bisect(data, x0, 1);
+  var d = data[0]
+  if (i >= data.length)
+  {
+    d = data[data.length-1];
+  }
+  else if (i >= 1)
+  {
+    var d0 = data[i - 1];
+    var d1 = data[i];
+    d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+  }
+  if (d.date !== undefined)
+  {
+    focus.attr("transform", "translate(" + x(d.date) + "," + y(d.time) + ")");
+    focus.select("text").text(timeOutFormat(d.time));
+  }
+  else
+  {
+    focus.style("display", "none");
+    focus.style("display", "none");
+  }
+}
 
-  /*
-  city.append("text")
-      .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
-      .attr("x", 3)
-      .attr("dy", ".35em")
-      .text(function(d) { return d.name; });
-  */
+function mousemove() {
+  var x0 = x.invert(d3.mouse(this)[0]);
+  updateReadout(focus_men, data_men, x0);
+  updateReadout(focus_women, data_women, x0);
+}
 
 </script>
