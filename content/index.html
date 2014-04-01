@@ -34,6 +34,19 @@ there in time to exchange runners with a minimum of effort.</p>
   stroke-width: 1.5px;
 }
 
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
 </style>
 
 <div id="marathon_rec"></div>
@@ -46,8 +59,10 @@ var margin = {top: 10, right: 10, bottom: 30, left: 60},
     height = (div_width * 4 / 7) - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%x").parse; // date, as "%m/%d/%Y"
-
 var parseTime = d3.time.format("%X").parse; // time, as "%H:%M:%S"
+
+var dateOutFormat = d3.time.format("%d%b%Y");
+var timeOutFormat = d3.time.format("%H:%M");
 
 var x = d3.time.scale()
     .range([0, width])
@@ -74,10 +89,10 @@ var line = d3.svg.line()
     .y(function(d) { return y(d.time); })
     .interpolate("step-after");
 
-var svg = d3.select("#marathon_rec").append("svg")
+var svg = d3.select("#marathon_rec").append("svg:svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .append("g")
+    .append("svg:g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 svg.append("g")
@@ -96,6 +111,13 @@ svg.append("g")
    .style("text-anchor", "end")
    .text("Time (HH:MM)");
 
+var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+// first mens record in 1908, womens in 1926 (18 year difference)
+// last mens in 2013, womens in 2003 (10 year difference)
+
 d3.csv("marathon_men.csv", 
   function(d) {
     return {
@@ -109,19 +131,34 @@ d3.csv("marathon_men.csv",
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
-  path = svg.append("path")
+  var path = svg.append("path")
      .datum(data)
      .attr("class", "line")
      .attr("d", line)
      .style("stroke", "steelblue");
+  path.on("mouseover", function(d) {
+        div.transition()
+           .duration(200)
+           .style("opacity", .9);
+        div.html(dateOutFormat(d[0].date) + "<br/>"
+                 + timeOutFormat(d[0].time))
+           .style("left", (d3.event.pageX + 15) + "px")
+           .style("top",  (d3.event.pageY - 15) + "px");
+     })
+     .on("mouseout", function(d) {
+        div.transition()
+           .duration(1000)
+           .style("opacity", 0);
+     });
 
   var totalLength = path.node().getTotalLength();
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
       .attr("stroke-dashoffset", totalLength)
       .transition()
-      .duration(2000)
+      .duration(2100)
       .ease("linear")
       .attr("stroke-dashoffset", 0);
+
 });
 
 d3.csv("marathon_women.csv", 
@@ -137,30 +174,43 @@ d3.csv("marathon_women.csv",
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
-  path = svg.append("path")
+  var path = svg.append("path")
      .datum(data)
      .attr("class", "line")
      .attr("d", line)
-     .style("stroke", "tomato");
+     .style("stroke", "tomato")
+     .on("mouseover", function(d) {
+        console.log((d3.event.pageX) + "px " + (d3.event.pageY) + "px");
+        console.log("svg=" + svg);
+        console.log(d3.mouse(svg));
+//        var rect = svg.getBoundingClientRect();
+//        console.log(rect.top, rect.right, rect.bottom, rect.left);
+//        console.log("x=" + d3.mouse("svg"));
+//        console.log("y=" + y.invert(d3.mouse.y));
+
+        div.transition()
+           .duration(200)
+           .style("opacity", .9);
+        div.html(dateOutFormat(d[0].date) + "<br/>"
+                 + timeOutFormat(d[0].time))
+           .style("left", (d3.event.pageX + 15) + "px")
+           .style("top",  (d3.event.pageY - 15) + "px");
+     })
+     .on("mouseout", function(d) {
+        div.transition()
+           .duration(1000)
+           .style("opacity", 0);
+     });
 
   var totalLength = path.node().getTotalLength();
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
       .attr("stroke-dashoffset", totalLength)
       .transition()
-      .duration(2000)
+      .duration(1540)
+      .delay(560)
       .ease("linear")
       .attr("stroke-dashoffset", 0);
 });
-
-  /*
-  document.write("<ul>");
-  data.forEach(function(d) {
-    document.write("<li>");
-    document.write(d.date);
-    document.write("</li>");
-  });
-  document.write("</ul>");
-  */
 
   /*
   var city = svg.selectAll(".city")
