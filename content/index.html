@@ -96,6 +96,11 @@ var line = d3.svg.line()
 var svg = d3.select("#marathon_rec").append("svg:svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+//    .on("mouseout", function() {
+//       div.transition()
+//          .duration(1000)
+//          .style("opacity", 0);
+//    })
     .append("svg:g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -152,11 +157,6 @@ d3.csv("marathon_men.csv",
                  + timeOutFormat(data[index-1].time))
            .style("left", (d3.event.pageX + 30) + "px")
            .style("top",  (d3.event.pageY - 30) + "px");
-     })
-     .on("mouseout", function(d) {
-        div.transition()
-           .duration(1000)
-           .style("opacity", 0);
      });
 
   var totalLength = path.node().getTotalLength();
@@ -199,11 +199,6 @@ d3.csv("marathon_women.csv",
                  + timeOutFormat(data[index-1].time))
            .style("left", (d3.event.pageX + 30) + "px")
            .style("top",  (d3.event.pageY - 30) + "px");
-     })
-     .on("mouseout", function(d) {
-        div.transition()
-           .duration(1000)
-           .style("opacity", 0);
      });
 
   var totalLength = path.node().getTotalLength();
