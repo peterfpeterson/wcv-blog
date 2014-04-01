@@ -31,14 +31,14 @@ there in time to exchange runners with a minimum of effort.</p>
 
 .line {
   fill: none;
-  stroke-width: 1.5px;
+  stroke-width: 2px;
 }
 
 div.tooltip {
   position: absolute;
   text-align: center;
-  width: 60px;
-  height: 28px;
+  width: 80px;
+  height: 30px;
   padding: 2px;
   font: 12px sans-serif;
   background: lightsteelblue;
@@ -63,6 +63,10 @@ var parseTime = d3.time.format("%X").parse; // time, as "%H:%M:%S"
 
 var dateOutFormat = d3.time.format("%d%b%Y");
 var timeOutFormat = d3.time.format("%H:%M");
+
+var bisect = d3.bisector(function(datum) {
+  return datum.date;
+}).right;
 
 var x = d3.time.scale()
     .range([0, width])
@@ -136,14 +140,18 @@ d3.csv("marathon_men.csv",
      .attr("class", "line")
      .attr("d", line)
      .style("stroke", "steelblue");
-  path.on("mouseover", function(d) {
+  path.on("mousemove", function(d) {
+        var mouse = d3.mouse(this);
+        var dateStamp = x.invert(mouse[0]);
+        var index = bisect(data, dateStamp);
+
         div.transition()
            .duration(200)
            .style("opacity", .9);
-        div.html(dateOutFormat(d[0].date) + "<br/>"
-                 + timeOutFormat(d[0].time))
-           .style("left", (d3.event.pageX + 15) + "px")
-           .style("top",  (d3.event.pageY - 15) + "px");
+        div.html(dateOutFormat(data[index-1].date) + "<br/>"
+                 + timeOutFormat(data[index-1].time))
+           .style("left", (d3.event.pageX + 30) + "px")
+           .style("top",  (d3.event.pageY - 30) + "px");
      })
      .on("mouseout", function(d) {
         div.transition()
@@ -179,22 +187,18 @@ d3.csv("marathon_women.csv",
      .attr("class", "line")
      .attr("d", line)
      .style("stroke", "tomato")
-     .on("mouseover", function(d) {
-        console.log((d3.event.pageX) + "px " + (d3.event.pageY) + "px");
-        console.log("svg=" + svg);
-        console.log(d3.mouse(svg));
-//        var rect = svg.getBoundingClientRect();
-//        console.log(rect.top, rect.right, rect.bottom, rect.left);
-//        console.log("x=" + d3.mouse("svg"));
-//        console.log("y=" + y.invert(d3.mouse.y));
+     .on("mousemove", function(d) {
+        var mouse = d3.mouse(this);
+        var dateStamp = x.invert(mouse[0]);
+        var index = bisect(data, dateStamp);
 
         div.transition()
            .duration(200)
            .style("opacity", .9);
-        div.html(dateOutFormat(d[0].date) + "<br/>"
-                 + timeOutFormat(d[0].time))
-           .style("left", (d3.event.pageX + 15) + "px")
-           .style("top",  (d3.event.pageY - 15) + "px");
+        div.html(dateOutFormat(data[index-1].date) + "<br/>"
+                 + timeOutFormat(data[index-1].time))
+           .style("left", (d3.event.pageX + 30) + "px")
+           .style("top",  (d3.event.pageY - 30) + "px");
      })
      .on("mouseout", function(d) {
         div.transition()
