@@ -2,3 +2,4 @@
 output
 # emacs backup files
 *~
+tmp/
