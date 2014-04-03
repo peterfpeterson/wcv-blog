@@ -18,4 +18,5 @@ end
 
 group :test do
   gem 'guard-nanoc'
+  gem 'guard-bundler'
 end
