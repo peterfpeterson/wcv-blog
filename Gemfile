@@ -3,5 +3,7 @@
 # source of all knowledge
 source "https://rubygems.org"
 
-gem "nanoc"
+gem "adsf"
+gem "builder"
 gem "haml"
+gem "nanoc"
