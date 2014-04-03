@@ -135,6 +135,7 @@ d3.csv("marathon_men.csv",
     return {
       date: parseDate(d.date),
       time: parseTime(d.time),
+      name: d.name
     };
   },
   function(error, data) {
@@ -166,6 +167,7 @@ d3.csv("marathon_women.csv",
     return {
       date: parseDate(d.date),
       time: parseTime(d.time),
+      name: d.name
     };
   },
   function(error, data) {
@@ -223,7 +225,8 @@ function updateReadout(focus, data, x0)
   if (d.date !== undefined)
   {
     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.time) + ")");
-    focus.select("text").text(timeOutFormat(d.time));
+    focus.select("text").text(timeOutFormat(d.time)+"<br/>in "+dateOutFormat(d.date)
+                              +"<br/>by "+d.name);
   }
   else
   {
