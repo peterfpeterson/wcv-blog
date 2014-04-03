@@ -6,9 +6,10 @@ title: Home
 
 <em>Helping friends find sweaty friends in the dark</em>
 
-<p>This is a site dedicated to overnight relays and the logistics involved in planning and 
-executing one. Hopefully you will be able find a race, plan when the exchanges are, and get
-there in time to exchange runners with a minimum of effort.</p>
+<p>This site is dedicated to overnight relays and the logistics involved in 
+planning and executing one. Hopefully you will find a race, plan your team's 
+exchanges, and arrive with sufficient time to exchange runners with minimum 
+effort.</p>
 
 <h3>Marathon Record Times</h3>
 
@@ -93,17 +94,18 @@ var svg = d3.select("#marathon_rec").append("svg:svg")
 
 var focus_men = svg.append("g")
                    .attr("class", "focus")
-                   .style("display", "none")
-                   .append("text")
-                   .attr("x", 9)
-                   .attr("dy", ".35em");
+                   .style("display", "none");
+
+focus_men.append("text")
+         .attr("x", 9)
+         .attr("dy", ".35em");
 
 var focus_women = svg.append("g")
                      .attr("class", "focus")
-                     .style("display", "none")
-                     .append("text")
-                     .attr("x", 9)
-                     .attr("dy", ".35em");
+                     .style("display", "none");
+focus_women.append("text")
+           .attr("x", 9)
+           .attr("dy", ".35em");
 
 svg.append("g")
    .attr("class", "x axis")
