@@ -1,12 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
     <title>White Cargo Van - <%= @item[:title] %></title>
     <link rel="stylesheet" href="/style.css">
-
-    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
+    <% if @item[:description] %><meta name="description" content="<%= @item[:description] %>"><% end %>
   </head>
   <body>
     <div id="main">
