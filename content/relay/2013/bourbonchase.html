@@ -1,8 +1,9 @@
 ---
-title: Bourbon Chase 2013
+title: Bourbon Chase
 layout: default
+race_year: 2013
 ---
-<h1><%= @item[:title] %></h1>
+<h1><%= @item[:title] %> <%= @item[:race_year] %></h1>
 
 <% unless @item.reps[0].path == "/" %>
   <% breadcrumbs_trail.each do |b| %>
