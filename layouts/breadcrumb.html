@@ -1,8 +1,10 @@
 <% unless @item.reps[0].path == "/" %>
-  <% breadcrumbs_trail.each do |b| %>
+  <% trail = breadcrumbs_trail %>
+  <% trail = trail[0, trail.length-1] %>
+  <% trail.each do |b| %>
     <% if b %>
       <%= link_to(  b[:title] , b.reps[0].path ) %>
-      <%= b != @item ? ':' : '' %>
+      <%= trail.index(b) != trail.length-1 ? ':' : '' %>
     <% end %>
   <% end%>
 <% end %>
