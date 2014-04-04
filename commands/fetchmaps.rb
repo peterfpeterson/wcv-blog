@@ -18,19 +18,15 @@ module Nanoc::CLI::Commands
   class FetchMaps < ::Nanoc::CLI::CommandRunner
 
     def run
-      puts "Doing stuff!"
+      stuff = options[:stuff] || 'generic stuff'
+      puts "Doing #{stuff}!"
+
+      if options[:more]
+        puts 'Doing it even more!'
+      end
     end
   end
 
 end
-
-#run do |opts, args, cmd|
-#  stuff = opts[:stuff] || 'generic stuff'
-#  puts "Doing #{stuff}!"
-#
-#  if opts[:more]
-#    puts 'Doing it even more!'
-#  end
-#end
 
 runner Nanoc::CLI::Commands::FetchMaps
