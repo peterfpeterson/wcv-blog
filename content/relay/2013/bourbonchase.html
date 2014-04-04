@@ -9,12 +9,7 @@ tags:
 ---
 <h1><%= @item[:title] %> <%= @item[:race_year] %></h1>
 
-<% unless @item.reps[0].path == "/" %>
-  <% breadcrumbs_trail.each do |b| %>
-    <%= link_to(  b[:title] , b.reps[0].path ) if b %>
-    <%= b != @item ? ':' : '' %>
-  <%end%>
-<% end %>
+<%= render "breadcrumb" %>
 
 <ul>
   <li><a href="http://bourbonchase.com/">Homepage</a></li>

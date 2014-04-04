@@ -4,14 +4,7 @@ layout: default
 ---
 <h1><%= @item[:title] %> </h1>
 
-<% unless @item.reps[0].path == "/" %>
-  <% breadcrumbs_trail.each do |b| %>
-    <% if b %>
-      <%= link_to(  b[:title] , b.reps[0].path ) %>
-      <%= b != @item ? ':' : '' %>
-    <% end %>
-  <% end%>
-<% end %>
+<%= render "breadcrumb" %>
 
 <!-- page list -->
 <ul>
