@@ -1,0 +1,16 @@
+---
+title: 2013
+layout: default
+---
+<h1><%= @item[:title] %> </h1>
+
+<% unless @item.reps[0].path == "/" %>
+  <% breadcrumbs_trail.each do |b| %>
+    <%= link_to(  b[:title] , b.reps[0].path ) if b %>
+    <%= b != @item ? ':' : '' %>
+  <%end%>
+<% end %>
+
+<ul>
+  <li><%= link_to( "Bourbon Chase", "bourbonchase") %></li>
+</ul>
