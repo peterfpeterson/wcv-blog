@@ -1,6 +1,8 @@
 ---
 title: 2013
 layout: default
+tags:
+ - Relay Race Index
 ---
 <h1><%= @item[:title] %> </h1>
 
@@ -11,6 +13,9 @@ layout: default
   <%end%>
 <% end %>
 
+<!-- page list -->
 <ul>
-  <li><%= link_to( "Bourbon Chase", "bourbonchase") %></li>
+  <% items_with_tag(@item[:title]).each do |i| %>
+    <li><%= link_to "#{i[:title]} #{@item[:title]}", i %></li>
+  <% end %>
 </ul>

@@ -11,6 +11,9 @@ layout: default
   <%end%>
 <% end %>
 
+<!-- page list -->
 <ul>
-  <li><%= link_to( "2013", "2013") %></li>
+  <% items_with_tag("Relay Race Index").each do |i| %>
+    <li><%= link_to "#{@item[:title]} #{i[:title]}", i %></li>
+  <% end %>
 </ul>
