@@ -6,6 +6,7 @@ tags:
  - 2013
  - Bourbon Chase
  - Relay Race
+map: 2013BourbonChase.json
 ---
 <h1><%= @item[:title] %> <%= @item[:race_year] %></h1>
 
@@ -37,7 +38,7 @@ var map = new google.maps.Map(d3.select("#map").node(),
                    {zoom: 7,
                     center: {lat:37.814, lng:-84.970}});
 
-d3.json("../../maps/2013BourbonChase.json",
+d3.json(<%= "\"../../maps/#{@item[:map]}\"" %>,
   function(error, topology) {
     //console.log(topology);
     //console.log(d3.geo.centroid(topology))
