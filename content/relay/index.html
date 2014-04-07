@@ -6,7 +6,14 @@ layout: default
 
 <%= render "partials/breadcrumb" %>
 
-<!-- page list -->
+<ul>
+  <% items_with_tag("2014").each do |i| %>
+    <li><%= link_to "#{i[:title]}", i %></li>
+  <% end %>
+</ul>
+
+
+<!-- page list for past years-->
 <ul>
   <% items_with_tag("Relay Race Index").each do |i| %>
     <li><%= link_to "#{@item[:title]} #{i[:title]}", i %></li>
