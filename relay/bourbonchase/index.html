@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>White Cargo Van - Bourbon Chase 2014</title>
+  <link rel="stylesheet" href="/style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="nanoc 3.6.8">
+  <meta name="description" content="Bourbon Chase 2014 Relay Race Information">
+</head>
+<body>
+
+<div id="main">
+  <h1>Bourbon Chase 2014</h1>
+
+
+  
+  
+  
+    
+      <a href="/">Home</a>
+      :
+    
+  
+    
+      <a href="/relay/">Relay Races</a>
+      
+    
+  
+
+
+
+<ul>
+  <li><a href="http://bourbonchase.com/">Homepage</a></li>
+  <li>Dates: October 10-11, 2014</li>
+  <li>Location: Louisville, KY to Lexington, KY
+  <li>Registration: Closed</li>
+</ul>
+
+<p><em>Race map and leg information from 2013</em></p>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<style>
+  #map {
+    width:  100%;
+    height: 500px;
+  }
+</style>
+
+<div id="map"></div>
+
+<script>
+var map = new google.maps.Map(d3.select("#map").node(),
+                   {zoom: 7,
+                    center: {lat:37.814, lng:-84.970}});
+
+d3.json("../maps/2013BourbonChase.json",
+  function(error, topology) {
+    //console.log(topology);
+    //console.log(d3.geo.centroid(topology))
+
+    // boundaries in d3 coords
+    var bounds = d3.geo.bounds(topology)
+
+    // boundaries in google coords
+    var southWest = new google.maps.LatLng(bounds[0][1], bounds[0][0]);
+    var northEast = new google.maps.LatLng(bounds[1][1], bounds[1][0]);
+    bounds = new google.maps.LatLngBounds(southWest,northEast);
+
+    // set the boundaries and add the topology
+    map.fitBounds(bounds);
+    map.data.addGeoJson(topology);
+});
+
+</script>
+</div>
+</body>
+</html>
+
