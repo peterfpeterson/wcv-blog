@@ -1,0 +1,194 @@
+{ "type": "FeatureCollection",
+    "features": [
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.653022,37.93071]},
+        "properties": {"name": "The Chase Begins", "leg": 1}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.564764,37.89913]},
+        "properties": {"name": "Samuels Loop", "leg": 2}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.489753,37.838658]},
+        "properties": {"name": "Stairway to Heaven Hill", "leg": 3}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.464701,37.793144]},
+        "properties": {"name": "Little Pottershop of Horrors!", "leg": 4}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.423520,37.762910]},
+        "properties": {"name": "Little Pottershop of Horrors, the Sequel", "leg": 5}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.3866912,37.712717]},
+        "properties": {"name": "Wax On", "leg": 6}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.348382,37.647875]},
+        "properties": {"name": "The Center of It All", "leg": 7}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.273339,37.600888]},
+        "properties": {"name": "Heart of Kentucky", "leg": 8}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.253858,37.572385]},
+        "properties": {"name": "I Can’t Drive (or Run) 55!", "leg": 9}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.222723,37.683872]},
+        "properties": {"name": "Striding Thru Springfield", "leg": 10}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.133244,37.658837]},
+        "properties": {"name": "Texas Two Step", "leg": 11}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-85.042521,37.647183]},
+        "properties": {"name": "Battle to Perryville", "leg": 12}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.951623,37.650351]},
+        "properties": {"name": "Needmore sleep... food... gas", "leg": 13}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.862201,37.650346]},
+        "properties": {"name": "Heart of Danville", "leg": 14}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.774035,37.645918]},
+        "properties": {"name": "Outskirts of Danville", "leg": 15}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.727496,37.598847]},
+        "properties": {"name": "Standing Fort (Stanford)", "leg": 16}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.661658,37.529298]},
+        "properties": {"name": "Traveler’s Rest, but not for Runners!", "leg": 17}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.791150,37.575837]},
+        "properties": {"name": "Danville...so nice we run it twice!", "leg": 18}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.771967,37.645759]},
+        "properties": {"name": "Bright Leaf Resort", "leg": 19}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.817956,37.721836]},
+        "properties": {"name": "Kentucky’s First City", "leg": 20}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.843375,37.761197]},
+        "properties": {"name": "Harrodsburg to McAfee", "leg": 21}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.851264,37.845583]},
+        "properties": {"name": "Salvisa, KY, USA", "leg": 22}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.863672,37.915628]},
+        "properties": {"name": "Where 007 Lives", "leg": 23}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.936681,37.942265]},
+        "properties": {"name": "Four Roses...smells good, tastes better!", "leg": 24}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.897422,37.973187]},
+        "properties": {"name": "High School Reunion", "leg": 25}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.911678,38.026565]},
+        "properties": {"name": "Turkey Time", "leg": 26}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.850679,38.038045]},
+        "properties": {"name": "Don’t Gorge Yourself", "leg": 27}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.804926,38.034853]},
+        "properties": {"name": "This ain’t France, this is 'Ver-sales'", "leg": 28}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.730623,38.051621]},
+        "properties": {"name": "Going to the Chapel", "leg": 29}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.793229,38.096652]},
+        "properties": {"name": "Woodford Reserve", "leg": 30}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.810022,38.112545]},
+        "properties": {"name": "In Like a Lamb, Out Like a Lion", "leg": 31}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.808584,38.164611]},
+        "properties": {"name": "Scenic Old Frankfort Pike", "leg": 32}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.749356,38.144554]},
+        "properties": {"name": "Horse Country at its Best", "leg": 33}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.682580,38.149832]},
+        "properties": {"name": "Romancing the Mill", "leg": 34}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.576277,38.140244]},
+        "properties": {"name": "Masterson Station Park", "leg": 35}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.555717,38.095330]},
+        "properties": {"name": "Get me to the Finish Line Celebration", "leg": 36}
+      },
+      { "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [-84.500409,38.049411]},
+        "properties": {"name": "Finish", "leg": 37}
+      },
+      { "type": "Feature",
+        "geometry": { "type": "LineString",
+                      "coordinates": [
+                        [-85.653022,37.93071],
+                        [-85.564764,37.89913],
+                        [-85.489753,37.838658],
+                        [-85.464701,37.793144],
+                        [-85.423520,37.762910],
+                        [-85.3866912,37.712717],
+                        [-85.348382,37.647875],
+                        [-85.273339,37.600888],
+                        [-85.253858,37.572385],
+                        [-85.222723,37.683872],
+                        [-85.133244,37.658837],
+                        [-85.042521,37.647183],
+                        [-84.951623,37.650351],
+                        [-84.862201,37.650346],
+                        [-84.774035,37.645918],
+                        [-84.727496,37.598847],
+                        [-84.661658,37.529298],
+                        [-84.791150,37.575837],
+                        [-84.771967,37.645759],
+                        [-84.817956,37.721836],
+                        [-84.843375,37.761197],
+                        [-84.851264,37.845583],
+                        [-84.863672,37.915628],
+                        [-84.936681,37.942265],
+                        [-84.897422,37.973187],
+                        [-84.911678,38.026565],
+                        [-84.850679,38.038045],
+                        [-84.804926,38.034853],
+                        [-84.730623,38.051621],
+                        [-84.793229,38.096652],
+                        [-84.810022,38.112545],
+                        [-84.808584,38.164611],
+                        [-84.749356,38.144554],
+                        [-84.682580,38.149832],
+                        [-84.576277,38.140244],
+                        [-84.555717,38.095330],
+                        [-84.500409,38.049411] ]
+        }
+      }
+    ]
+}

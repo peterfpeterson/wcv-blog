@@ -1,22 +1,26 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>A Brand New nanoc Site - Home</title>
-    <link rel="stylesheet" href="/style.css">
+<head>
+  <title>White Cargo Van - Home</title>
+  <link rel="stylesheet" href="/style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="nanoc 3.6.8">
+  
+</head>
+<body>
 
-    <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc 3.6.7">
-  </head>
-  <body>
-    <div id="main">
-      <h1>White Cargo Van</h1>
+<div id="main">
+  <h1>White Cargo Van</h1>
 
 <em>Helping friends find sweaty friends in the dark</em>
 
-<p>This is a site dedicated to overnight relays and the logistics involved in planning and 
-executing one. Hopefully you will be able find a race, plan when the exchanges are, and get
-there in time to exchange runners with a minimum of effort.</p>
+<p>This site is dedicated to overnight relays and the logistics involved in 
+planning and executing one. Hopefully you will find a race, plan your team's 
+exchanges, and arrive with sufficient time to exchange runners with minimum 
+effort.</p>
+
+<p><a href="relay">List of Relay Races</a></p>
+<br>
 
 <h3>Marathon Record Times</h3>
 
@@ -47,6 +51,20 @@ there in time to exchange runners with a minimum of effort.</p>
   pointer-events: all;
 }
 
+.focus circle {
+  fill: none;
+}
+
+.tooltip {
+    pointer-events:none; /*let mouse events pass through*/
+    opacity:0.7;
+    transition: opacity 0.3s;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align:left;
+}
 </style>
 
 <div id="marathon_rec"></div>
@@ -61,7 +79,7 @@ var margin = {top: 10, right: 10, bottom: 30, left: 60},
 var parseDate = d3.time.format("%x").parse; // date, as "%m/%d/%Y"
 var parseTime = d3.time.format("%X").parse; // time, as "%H:%M:%S"
 
-var dateOutFormat = d3.time.format("%d%b%Y");
+var dateOutFormat = d3.time.format("%d-%b-%Y");
 var timeOutFormat = d3.time.format("%H:%M:%S");
 
 var bisect = d3.bisector(function(datum) {
@@ -74,7 +92,7 @@ var x = d3.time.scale()
 
 var y = d3.time.scale()
     .range([height, 0])
-    .domain([new Date("Jan 01 1900 02:00:00"), new Date("Jan 01 1900 03:45:00")])
+    .domain([new Date("Jan 01 1900 01:30:00"), new Date("Jan 01 1900 04:00:00")])
     //.ticks([d3.time.minute, 10]);
 
 var color = d3.scale.category10();
@@ -99,21 +117,17 @@ var svg = d3.select("#marathon_rec").append("svg:svg")
     .append("svg:g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var focus_men = svg.append("g")
-                   .attr("class", "focus")
-                   .style("display", "none");
+var div_men = d3.select("#marathon_rec").append("div")
+                .attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("z-index", "100")
+                .style("visibility", "visible");
 
-focus_men.append("text")
-         .attr("x", 9)
-         .attr("dy", ".35em");
-
-var focus_women = svg.append("g")
-                     .attr("class", "focus")
-                     .style("display", "none");
-
-focus_women.append("text")
-           .attr("x", 9)
-           .attr("dy", ".35em");
+var div_women = d3.select("#marathon_rec").append("div")
+                .attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("z-index", "100")
+                .style("visibility", "visible");
 
 svg.append("g")
    .attr("class", "x axis")
@@ -133,16 +147,17 @@ svg.append("g")
 
 // first mens record in 1908, womens in 1926 (18 year difference)
 // last mens in 2013, womens in 2003 (10 year difference)
-var delay_men = 0;
-var delay_women = (1926-1908)*20;
-var duration_men = (2013-1908)*20;
-var duration_women = (2003-1926)*20;
+var men_start = 0;
+var men_duration = (2013-1908)*20;
+var women_start = (1926-1908)*20;
+var women_duration = (2003-1926)*20;
 
 d3.csv("marathon_men.csv", 
   function(d) {
     return {
       date: parseDate(d.date),
       time: parseTime(d.time),
+      name: d.name
     };
   },
   function(error, data) {
@@ -162,8 +177,8 @@ d3.csv("marathon_men.csv",
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
       .attr("stroke-dashoffset", totalLength)
       .transition()
-      .duration(duration_men)
-      .delay(delay_men)
+      .duration(men_duration)
+      .delay(men_start)
       .ease("linear")
       .attr("stroke-dashoffset", 0);
 
@@ -174,6 +189,7 @@ d3.csv("marathon_women.csv",
     return {
       date: parseDate(d.date),
       time: parseTime(d.time),
+      name: d.name
     };
   },
   function(error, data) {
@@ -193,12 +209,33 @@ d3.csv("marathon_women.csv",
   path.attr("stroke-dasharray", totalLength + " " + totalLength)
       .attr("stroke-dashoffset", totalLength)
       .transition()
-      .duration(duration_women)
-      .delay(delay_women)
+      .duration(women_duration)
+      .delay(women_start)
       .ease("linear")
       .attr("stroke-dashoffset", 0);
 
 });
+
+var focus_men = svg.append("g")
+      .attr("class", "focus")
+      .style("display", "none");
+focus_men.append("circle")
+         .style("stroke", "steelblue")
+         .attr("r", 4.5);
+
+var focus_women = svg.append("g")
+      .attr("class", "focus")
+      .style("display", "none");
+focus_women.append("circle")
+         .style("stroke", "tomato")
+         .attr("r", 4.5);
+
+var pos = getNodePos(d3.select("#marathon_rec").node());
+//console.log(pos + " w=" + width +" h=" + height);
+div_men.style("left", pos.x + .15*width  + "px")
+       .style("top",  pos.y + .65*height + "px");
+div_women.style("left", pos.x + .15*width  + "px")
+         .style("top",  pos.y + .15*height + "px");
 
 svg.append("rect")
    .attr("class", "overlay")
@@ -207,14 +244,39 @@ svg.append("rect")
    .on("mouseover", function() {
       focus_men.style("display", null);
       focus_women.style("display", null);
+      div_men.transition()
+             .duration(200)
+             .style("visibility", "visible");
+      div_women.transition()
+               .duration(200)
+               .style("visibility", "visible");
    })
    .on("mouseout", function() {
       focus_men.style("display", "none");
       focus_women.style("display", "none");
+      div_men.transition()
+             .duration(200)
+             .style("visibility", "hidden");
+      div_women.transition()
+               .duration(200)
+               .style("visibility", "hidden");
    })
    .on("mousemove", mousemove);
 
-function updateReadout(focus, data, x0)
+// http://stackoverflow.com/questions/288699/get-the-position-of-a-div-span-tag
+// dirty hack/fixes for FireFox (code barfed on FF with NaN/NaN)
+function getNodePos(el)
+{
+    var body = d3.select('body').node();
+
+    for (var lx = 0, ly = 0;
+         el != null && el != body;
+         lx += (el.offsetLeft || el.clientLeft), ly += (el.offsetTop || el.clientTop), el = (el.offsetParent || el.parentNode))
+        ;
+    return {x: lx, y: ly};
+}
+
+function updateReadout(gender, focus, div, data, x0)
 {
   var i = bisect(data, x0, 1);
   var d = data[0]
@@ -230,23 +292,34 @@ function updateReadout(focus, data, x0)
   }
   if (d.date !== undefined)
   {
+//    console.log("translate(" + x(d.date) + "," + y(d.time) + ")");
     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.time) + ")");
-    focus.select("text").text(timeOutFormat(d.time));
+
+    div.transition()
+       .duration(200)
+       .style("visibility", "visible");
+
+    div.html(gender +"<br/>"
+             +timeOutFormat(d.time)+"<br/>"
+             +"on "+dateOutFormat(d.date)+"<br/>"
+             +"by "+d.name);
   }
   else
   {
-    focus.style("display", "none");
-    focus.style("display", "none");
+    div.transition()
+       .duration(200)
+       .style("visibility", "hidden");
   }
 }
 
 function mousemove() {
   var x0 = x.invert(d3.mouse(this)[0]);
-  updateReadout(focus_men, data_men, x0);
-  updateReadout(focus_women, data_women, x0);
+  updateReadout("Men",   focus_men,   div_men, data_men, x0);
+  updateReadout("Women", focus_women, div_women, data_women, x0);
 }
 
 </script>
-    </div>
-  </body>
+</div>
+</body>
 </html>
+
