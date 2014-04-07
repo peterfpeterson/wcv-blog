@@ -43,6 +43,20 @@ effort.</p>
   pointer-events: all;
 }
 
+.focus circle {
+  fill: none;
+}
+
+.tooltip {
+    pointer-events:none; /*let mouse events pass through*/
+    opacity:0.7;
+    transition: opacity 0.3s;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align:left;
+}
 </style>
 
 <div id="marathon_rec"></div>
@@ -57,7 +71,7 @@ var margin = {top: 10, right: 10, bottom: 30, left: 60},
 var parseDate = d3.time.format("%x").parse; // date, as "%m/%d/%Y"
 var parseTime = d3.time.format("%X").parse; // time, as "%H:%M:%S"
 
-var dateOutFormat = d3.time.format("%d%b%Y");
+var dateOutFormat = d3.time.format("%d-%b-%Y");
 var timeOutFormat = d3.time.format("%H:%M:%S");
 
 var bisect = d3.bisector(function(datum) {
@@ -70,7 +84,7 @@ var x = d3.time.scale()
 
 var y = d3.time.scale()
     .range([height, 0])
-    .domain([new Date("Jan 01 1900 02:00:00"), new Date("Jan 01 1900 03:45:00")])
+    .domain([new Date("Jan 01 1900 01:30:00"), new Date("Jan 01 1900 04:00:00")])
     //.ticks([d3.time.minute, 10]);
 
 var color = d3.scale.category10();
@@ -95,20 +109,17 @@ var svg = d3.select("#marathon_rec").append("svg:svg")
     .append("svg:g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var focus_men = svg.append("g")
-                   .attr("class", "focus")
-                   .style("display", "none");
+var div_men = d3.select("#marathon_rec").append("div")
+                .attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("z-index", "100")
+                .style("visibility", "visible");
 
-focus_men.append("text")
-         .attr("x", 9)
-         .attr("dy", ".35em");
-
-var focus_women = svg.append("g")
-                     .attr("class", "focus")
-                     .style("display", "none");
-focus_women.append("text")
-           .attr("x", 9)
-           .attr("dy", ".35em");
+var div_women = d3.select("#marathon_rec").append("div")
+                .attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("z-index", "100")
+                .style("visibility", "visible");
 
 svg.append("g")
    .attr("class", "x axis")
@@ -197,6 +208,27 @@ d3.csv("marathon_women.csv",
 
 });
 
+var focus_men = svg.append("g")
+      .attr("class", "focus")
+      .style("display", "none");
+focus_men.append("circle")
+         .style("stroke", "steelblue")
+         .attr("r", 4.5);
+
+var focus_women = svg.append("g")
+      .attr("class", "focus")
+      .style("display", "none");
+focus_women.append("circle")
+         .style("stroke", "tomato")
+         .attr("r", 4.5);
+
+var pos = getNodePos(d3.select("#marathon_rec").node());
+//console.log(pos + " w=" + width +" h=" + height);
+div_men.style("left", pos.x + .15*width  + "px")
+       .style("top",  pos.y + .65*height + "px");
+div_women.style("left", pos.x + .15*width  + "px")
+         .style("top",  pos.y + .15*height + "px");
+
 svg.append("rect")
    .attr("class", "overlay")
    .attr("width", width)
@@ -204,14 +236,39 @@ svg.append("rect")
    .on("mouseover", function() {
       focus_men.style("display", null);
       focus_women.style("display", null);
+      div_men.transition()
+             .duration(200)
+             .style("visibility", "visible");
+      div_women.transition()
+               .duration(200)
+               .style("visibility", "visible");
    })
    .on("mouseout", function() {
       focus_men.style("display", "none");
       focus_women.style("display", "none");
+      div_men.transition()
+             .duration(200)
+             .style("visibility", "hidden");
+      div_women.transition()
+               .duration(200)
+               .style("visibility", "hidden");
    })
    .on("mousemove", mousemove);
 
-function updateReadout(focus, data, x0)
+// http://stackoverflow.com/questions/288699/get-the-position-of-a-div-span-tag
+// dirty hack/fixes for FireFox (code barfed on FF with NaN/NaN)
+function getNodePos(el)
+{
+    var body = d3.select('body').node();
+
+    for (var lx = 0, ly = 0;
+         el != null && el != body;
+         lx += (el.offsetLeft || el.clientLeft), ly += (el.offsetTop || el.clientTop), el = (el.offsetParent || el.parentNode))
+        ;
+    return {x: lx, y: ly};
+}
+
+function updateReadout(gender, focus, div, data, x0)
 {
   var i = bisect(data, x0, 1);
   var d = data[0]
@@ -227,20 +284,30 @@ function updateReadout(focus, data, x0)
   }
   if (d.date !== undefined)
   {
+//    console.log("translate(" + x(d.date) + "," + y(d.time) + ")");
     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.time) + ")");
-    focus.select("text").text(timeOutFormat(d.time)+"<br/>on "+dateOutFormat(d.date)
-                              +"<br/>by "+d.name);
+
+    div.transition()
+       .duration(200)
+       .style("visibility", "visible");
+
+    div.html(gender +"<br/>"
+             +timeOutFormat(d.time)+"<br/>"
+             +"on "+dateOutFormat(d.date)+"<br/>"
+             +"by "+d.name);
   }
   else
   {
-    focus.style("display", "none");
+    div.transition()
+       .duration(200)
+       .style("visibility", "hidden");
   }
 }
 
 function mousemove() {
   var x0 = x.invert(d3.mouse(this)[0]);
-  updateReadout(focus_men, data_men, x0);
-  updateReadout(focus_women, data_women, x0);
+  updateReadout("Men",   focus_men,   div_men, data_men, x0);
+  updateReadout("Women", focus_women, div_women, data_women, x0);
 }
 
 </script>
