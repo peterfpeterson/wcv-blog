@@ -43,10 +43,6 @@ effort.</p>
   pointer-events: all;
 }
 
-.focus circle {
-  fill: none;
-}
-
 .tooltip {
     pointer-events:none; /*let mouse events pass through*/
     opacity:0.7;
@@ -213,6 +209,7 @@ var focus_men = svg.append("g")
       .style("display", "none");
 focus_men.append("circle")
          .style("stroke", "steelblue")
+         .style("fill", "steelblue")
          .attr("r", 4.5);
 
 var focus_women = svg.append("g")
@@ -220,6 +217,7 @@ var focus_women = svg.append("g")
       .style("display", "none");
 focus_women.append("circle")
          .style("stroke", "tomato")
+         .style("fill", "tomato")
          .attr("r", 4.5);
 
 var pos = getNodePos(d3.select("#marathon_rec").node());
