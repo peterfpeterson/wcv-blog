@@ -1,5 +1,6 @@
 # ignore the generated directory as it is at a different site
 output
+tmp/
+crash.log
 # emacs backup files
 *~
-tmp/
