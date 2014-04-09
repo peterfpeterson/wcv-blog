@@ -25,7 +25,7 @@ effort.</p>
 <h3>Marathon Record Times</h3>
 
 <!-- hotlink d3 into the page -->
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
 
 <!-- marathon records plot -->
 <style>
@@ -49,10 +49,6 @@ effort.</p>
 .overlay {
   fill: none;
   pointer-events: all;
-}
-
-.focus circle {
-  fill: none;
 }
 
 .tooltip {
@@ -221,6 +217,7 @@ var focus_men = svg.append("g")
       .style("display", "none");
 focus_men.append("circle")
          .style("stroke", "steelblue")
+         .style("fill", "steelblue")
          .attr("r", 4.5);
 
 var focus_women = svg.append("g")
@@ -228,6 +225,7 @@ var focus_women = svg.append("g")
       .style("display", "none");
 focus_women.append("circle")
          .style("stroke", "tomato")
+         .style("fill", "tomato")
          .attr("r", 4.5);
 
 var pos = getNodePos(d3.select("#marathon_rec").node());

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://www.whitecargovan.com/</loc>
-    <lastmod>2014-04-06</lastmod>
+    <lastmod>2014-04-08</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/marathon_men.csv</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>http://www.whitecargovan.com/relay/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-08</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/relay/2013/</loc>
@@ -22,15 +22,43 @@
   </url>
   <url>
     <loc>http://www.whitecargovan.com/relay/2013/bourbonchase/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-08</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/relay/bourbonchase/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-08</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/relay/maps/2013BourbonChase.json</loc>
-    <lastmod>2014-04-03</lastmod>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/relay/ragnarcolorado/</loc>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/relay/ragnardelsol/</loc>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/relay/ragnarlasvegas/</loc>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/relay/ragnarnapavalley/</loc>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/relay/ragnarnorthwestpassage/</loc>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/relay/ragnarsocal/</loc>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/relay/ragnarwasatchback/</loc>
+    <lastmod>2014-04-08</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/sitemap.xml</loc>
