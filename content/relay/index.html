@@ -9,12 +9,22 @@ layout: default
 <br/>
 
 <h2>Relay Races</h2>
-<ul>
+<table>
+  <tr>
+    <th>Race</th>
+    <th>Start Location</th>
+    <th>Dates</th>
+    <th>Registration</th>
+  </tr>
   <% items_with_tag("2014").each do |i| %>
-    <li><%= link_to "#{i[:title]}", i %></li>
+  <tr>
+    <td><%= link_to "#{i[:title]}", i %></td>
+    <td><%= "#{i[:loc_start]}" %></td>
+    <td><%= "#{i[:race_dates]}" %></td>
+    <td><%= "#{i[:registration]}" %></td>
+  </tr>
   <% end %>
-</ul>
-
+</table>
 
 <!-- page list for past years-->
 <h2>Previous</h2>

@@ -1,25 +1,26 @@
 ---
-title: Bourbon Chase 2014
+title: Ragnar Northwest Passage 2014
 layout: default
-description: Bourbon Chase 2014 Relay Race Information
-tags: ['2014', 'Bourbon Chase', 'Relay Race']
+description: Ragnar Northwest Passage 2014 Relay Race Information
+tags: ['2014', Ragnar', 'Ragnar Northwest Passage', 'Relay Race']
 map: /relay/maps/2013BourbonChase.json
-race_dates: October 10-11, 2014
+race_dates: July 18-19, 2014
 registration: Closed
-loc_start: Louisville, KY
-loc_finish: Lexington, KY
+loc_start: Blaine, WA
+loc_finish: Langley, WA
 ---
 <h1><%= @item[:title] %></h1>
 
 <%= render "partials/breadcrumb" %>
 
 <ul>
-  <li><a href="http://bourbonchase.com/">Homepage</a></li>
+  <li><a href="http://www.ragnarrelay.com/race/northwestpassage">Homepage</a></li>
   <li>Dates: <%= @item[:race_dates] %></li>
   <li>Location: <%= @item[:loc_start] %> to <%= @item[:loc_finish] %></li>
   <li>Registration: <%= @item[:registration] %></li>
 </ul>
 
+<!--
 <p><em>Race map and leg information from 2013</em></p>
 
 <%= web_api("google-maps") %>
@@ -58,3 +59,4 @@ d3.json("<%= relative_path_to(@item[:map]) %>",
 });
 
 </script>
+-->

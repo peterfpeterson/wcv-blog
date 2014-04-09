@@ -1,25 +1,26 @@
 ---
-title: Bourbon Chase 2014
+title: Ragnar Las Vegas 2014
 layout: default
-description: Bourbon Chase 2014 Relay Race Information
-tags: ['2014', 'Bourbon Chase', 'Relay Race']
+description: Ragnar Las Vegas 2014 Relay Race Information
+tags: ['2014', Ragnar', 'Ragnar Las Vegas', 'Relay Race']
 map: /relay/maps/2013BourbonChase.json
-race_dates: October 10-11, 2014
-registration: Closed
-loc_start: Louisville, KY
-loc_finish: Lexington, KY
+race_dates: November 7-8, 2014
+registration: Open
+loc_start: Las Vegas Ski & Snoboard Resort, NV
+loc_finish: Red Rock Resort, NV
 ---
 <h1><%= @item[:title] %></h1>
 
 <%= render "partials/breadcrumb" %>
 
 <ul>
-  <li><a href="http://bourbonchase.com/">Homepage</a></li>
+  <li><a href="http://www.ragnarrelay.com/race/lasvegas">Homepage</a></li>
   <li>Dates: <%= @item[:race_dates] %></li>
   <li>Location: <%= @item[:loc_start] %> to <%= @item[:loc_finish] %></li>
   <li>Registration: <%= @item[:registration] %></li>
 </ul>
 
+<!--
 <p><em>Race map and leg information from 2013</em></p>
 
 <%= web_api("google-maps") %>
@@ -58,3 +59,4 @@ d3.json("<%= relative_path_to(@item[:map]) %>",
 });
 
 </script>
+-->
