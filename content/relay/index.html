@@ -6,6 +6,9 @@ layout: default
 
 <%= render "partials/breadcrumb" %>
 
+<br/>
+
+<h2>Relay Races</h2>
 <ul>
   <% items_with_tag("2014").each do |i| %>
     <li><%= link_to "#{i[:title]}", i %></li>
@@ -14,6 +17,7 @@ layout: default
 
 
 <!-- page list for past years-->
+<h2>2013</h2>
 <ul>
   <% items_with_tag("Relay Race Index").each do |i| %>
     <li><%= link_to "#{@item[:title]} #{i[:title]}", i %></li>

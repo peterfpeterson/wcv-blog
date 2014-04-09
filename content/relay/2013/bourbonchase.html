@@ -4,7 +4,6 @@ layout: default
 description: Bourbon Chase 2013 Relay Race Information
 tags: ['2013', 'Bourbon Chase', 'Relay Race']
 map: /relay/maps/2013BourbonChase.json
-map_gist: http://gist.githubusercontent.com/peterfpeterson/9856414/
 ---
 <h1><%= @item[:title] %> <%= @item[:race_year] %></h1>
 
@@ -19,8 +18,8 @@ map_gist: http://gist.githubusercontent.com/peterfpeterson/9856414/
       and <a href="http://143.95.94.190/files/resources/BC2013-Final-Results-by-Division.pdf">By Division</a></li>
 </ul>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<%= web_api("google-maps") %>
+<%= web_api("d3") %>
 
 <style>
   #map {

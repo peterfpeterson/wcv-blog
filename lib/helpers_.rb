@@ -6,3 +6,4 @@ include Nanoc3::Helpers::Breadcrumbs
 include Nanoc3::Helpers::Tagging
 include Nanoc3::Helpers::Rendering
 include RandomTextHelper
+include WebApiHelper
