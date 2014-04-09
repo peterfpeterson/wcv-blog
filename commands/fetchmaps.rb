@@ -22,20 +22,18 @@ module Nanoc::CLI::Commands
       # Make sure we are in a nanoc site directory
       require_site
 
-      # build a hash of maps
-      maps = Hash.new
+      # build an array of maps
+      maps = Array.new
       site.items.each do |item|
         if item[:map]
-	  if !item[:map_gist]
-            raise Nanoc::Errors::GenericTrivial, "Found map attribute without a map_gist attribute in \"#{item[:filename]}\""
-	  end
-	  maps[item[:map]] = item[:map_gist]
+          maps.add(item[:map])
         end
       end
+      maps.uniq!
 
       # exit early if we are just listing
       if options[:list]
-        maps.each {|key, value| puts "#{key} => #{value}" }
+        maps.each {|map| puts "#{map}" }
         return
       end
 
