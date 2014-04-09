@@ -17,9 +17,10 @@ layout: default
 
 
 <!-- page list for past years-->
-<h2>2013</h2>
+<h2>Previous</h2>
+<h3>2013</h3>
 <ul>
-  <% items_with_tag("Relay Race Index").each do |i| %>
-    <li><%= link_to "#{@item[:title]} #{i[:title]}", i %></li>
+  <% items_with_tag("2013").each do |i| %>
+    <li><%= link_to "#{i[:title]}", i %></li>
   <% end %>
 </ul>
