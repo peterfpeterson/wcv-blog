@@ -1,0 +1,3 @@
+[submodule "content/relay/maps"]
+	path = content/relay/maps
+	url = git@github.com:peterfpeterson/relay-maps.git
