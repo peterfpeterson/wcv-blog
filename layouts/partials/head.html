@@ -6,5 +6,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
   <% if @item[:description] %><meta name="description" content="<%= @item[:description] %>"><% end %>
+  <% if @item[:map] %><!-- apis for maps -->
+  <%= web_api("google-maps") %>
+  <%= web_api("d3") %><% end %>
 </head>
 <body>
