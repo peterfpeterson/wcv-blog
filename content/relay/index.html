@@ -22,7 +22,9 @@ tbody tr:nth-child(odd) {
     <th>Dates</th>
     <th>Registration</th>
   </tr>
-  <% items_with_tag("2014").each do |i| %>
+  <% items = items_with_tag("future") %>
+  <% items.sort! { |a,b| a[:start_date] <=> b[:start_date] } %>
+  <% items.each do |i| %>
   <tr>
     <td><%= link_to "#{i[:title]}", i %></td>
     <td><%= "#{i[:loc_start]}" %></td>
