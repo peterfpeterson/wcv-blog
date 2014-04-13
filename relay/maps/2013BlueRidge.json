@@ -1,0 +1,152 @@
+{ "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.49995,36.62419]},
+      "properties": {"leg": 1, "miles": 4.0, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.4805,36.61273]},
+      "properties": {"leg": 2, "miles": 7.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.48373,36.55201]},
+      "properties": {"leg": 3, "miles": 5.2, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.44844,36.50997]},
+      "properties": {"leg": 4, "miles": 6.9, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.46849,36.43507]},
+      "properties": {"leg": 5, "miles": 5.0, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.50834, 36.38992]},
+      "properties": {"leg": 6, "miles": 4.9, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.53809,36.37452]},
+      "properties": {"leg": 7, "miles": 5.6, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.56490,36.31652]},
+      "properties": {"leg": 8, "miles": 4.6, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.554380,36.27666]},
+      "properties": {"leg": 9, "miles": 5.3, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.604710,36.29071]},
+      "properties": {"leg": 10, "miles": 8.4, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.55019,36.23423]},
+      "properties": {"leg": 11, "miles": 6.1, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.60831186616821,36.19835578818254]},
+      "properties": {"leg": 12, "miles": 9.0, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.67372,36.13277]},
+      "properties": {"leg": 13, "miles": 6.7, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.752310,36.12049]},
+      "properties": {"leg": 14, "miles": 10.1, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.84598,36.08470]},
+      "properties": {"leg": 15, "miles": 2.2, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.87183,36.07077]},
+      "properties": {"leg": 16, "miles": 3.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.921580,36.08313]},
+      "properties": {"leg": 17, "miles": 4.8, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-81.955370,36.05187]},
+      "properties": {"leg": 18, "miles": 5.8, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.006740,36.02953]},
+      "properties": {"leg": 19, "miles": 4.4, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.015690,35.9803]},
+      "properties": {"leg": 20, "miles": 7.3, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.0403,35.926]},
+      "properties": {"leg": 21, "miles": 2.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.073910,35.91566]},
+      "properties": {"leg": 22, "miles": 5.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.11408,35.938390]},
+      "properties": {"leg": 23, "miles": 5.4, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.143570,35.97843]},
+      "properties": {"leg": 24, "miles": 3.2, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.16298,36.01344]},
+      "properties": {"leg": 25, "miles": 4.3, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.214290,36.02355]},
+      "properties": {"leg": 26, "miles": 4.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.2704,36.03504]},
+      "properties": {"leg": 27, "miles": 9.0, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.298380,35.977050]},
+      "properties": {"leg": 28, "miles": 7.4, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.333930,35.912670]},
+      "properties": {"leg": 29, "miles": 7.6, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.31957,35.87403]},
+      "properties": {"leg": 30, "miles": 4.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.307540,35.84767]},
+      "properties": {"leg": 31, "miles": 6.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.34792,35.81022]},
+      "properties": {"leg": 32, "miles": 9.5, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.45912,35.775940]},
+      "properties": {"leg": 33, "miles": 5.3, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.470720,35.71056]},
+      "properties": {"leg": 34, "miles": 4.4, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.480290,35.68108]},
+      "properties": {"leg": 35, "miles": 4.2, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.491480,35.64806]},
+      "properties": {"leg": 36, "miles": 6.8, "name": ""}
+    },
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [-82.551350,35.59519]},
+      "properties": {"leg": 37, "miles": 0.0, "name": "Finish"}
+    }
+  ]
+}

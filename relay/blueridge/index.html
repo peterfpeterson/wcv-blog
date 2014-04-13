@@ -1,16 +1,30 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <title>White Cargo Van - Ragnar Las Vegas 2014</title>
+  <title>White Cargo Van - Blue Ridge Relay 2014</title>
   <link rel="stylesheet" href="/style.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="generator" content="nanoc 3.6.8">
-  <meta name="description" content="Ragnar Las Vegas 2014 Relay Race Information">
+  <meta name="description" content="Blue Ridge 2014 Relay Race Information">
+  <!-- apis for maps -->
+  <script charset="utf-8" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
+  <!-- info for goolge analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49930554-1', 'whitecargovan.com');
+  ga('send', 'pageview');
+  </script>
+
 </head>
 <body>
 
 <div id="main">
-  <h1>Ragnar Las Vegas 2014</h1>
+  <h1>Blue Ridge Relay 2014</h1>
 
 
   
@@ -30,17 +44,14 @@
 
 
 <ul>
-  <li><a href="http://www.ragnarrelay.com/race/lasvegas">Homepage</a></li>
-  <li>Dates: November 7-8, 2014</li>
-  <li>Location: Las Vegas Ski & Snoboard Resort, NV to Red Rock Resort, NV</li>
+  <li><a href="http://www.blueridgerelay.com/">Homepage</a></li>
+  <li>Dates: September 5-6, 2014</li>
+  <li>Location: Mouth of Wilson, VA to Ashville, NC</li>
   <li>Registration: Open</li>
 </ul>
 
-<!--
 <p><em>Race map and leg information from 2013</em></p>
 
-<script charset="utf-8" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
 
 <style>
   #map {
@@ -56,7 +67,7 @@ var map = new google.maps.Map(d3.select("#map").node(),
                    {zoom: 7,
                     center: {lat:37.814, lng:-84.970}});
 
-d3.json("../maps/2013BourbonChase.json",
+d3.json("../maps/2013BlueRidge.json",
   function(error, topology) {
     //console.log(topology);
     //console.log(d3.geo.centroid(topology))
@@ -75,7 +86,8 @@ d3.json("../maps/2013BourbonChase.json",
 });
 
 </script>
--->
+
+
 </div>
 </body>
 </html>
