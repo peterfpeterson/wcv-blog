@@ -15,7 +15,9 @@
 
 ignore '/relay/maps/README'
 ignore '*~'
+ignore '*/*~'
 ignore '#*#'
+ignore '*/#*#'
 
 compile '/stylesheet/' do
   # don’t filter or layout
