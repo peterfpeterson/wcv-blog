@@ -3,7 +3,8 @@ title: Blue Ridge Relay 2014
 layout: default
 description: Blue Ridge 2014 Relay Race Information
 tags: ['2014', 'Blue Ridge', 'Relay Race']
-map: /relay/maps/2013BourbonChase.json
+homepage: http://www.blueridgerelay.com/
+map: /relay/maps/2013BlueRidge.json
 race_dates: September 5-6, 2014
 registration: Open
 loc_start: Mouth of Wilson, VA
@@ -14,49 +15,12 @@ loc_finish: Ashville, NC
 <%= render "partials/breadcrumb" %>
 
 <ul>
-  <li><a href="http://www.blueridgerelay.com/">Homepage</a></li>
+  <li><a href="<%= @item[:homepage] %>">Homepage</a></li>
   <li>Dates: <%= @item[:race_dates] %></li>
   <li>Location: <%= @item[:loc_start] %> to <%= @item[:loc_finish] %></li>
   <li>Registration: <%= @item[:registration] %></li>
 </ul>
 
-<!--
 <p><em>Race map and leg information from 2013</em></p>
 
-<%= web_api("google-maps") %>
-<%= web_api("d3") %>
-
-<style>
-  #map {
-    width:  100%;
-    height: 500px;
-  }
-</style>
-
-<div id="map"></div>
-
-<script>
-var map = new google.maps.Map(d3.select("#map").node(),
-                   {zoom: 7,
-                    center: {lat:37.814, lng:-84.970}});
-
-d3.json("<%= relative_path_to(@item[:map]) %>",
-  function(error, topology) {
-    //console.log(topology);
-    //console.log(d3.geo.centroid(topology))
-
-    // boundaries in d3 coords
-    var bounds = d3.geo.bounds(topology)
-
-    // boundaries in google coords
-    var southWest = new google.maps.LatLng(bounds[0][1], bounds[0][0]);
-    var northEast = new google.maps.LatLng(bounds[1][1], bounds[1][0]);
-    bounds = new google.maps.LatLngBounds(southWest,northEast);
-
-    // set the boundaries and add the topology
-    map.fitBounds(bounds);
-    map.data.addGeoJson(topology);
-});
-
-</script>
--->
+<%= render "partials/relaymap" %>
