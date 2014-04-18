@@ -11,15 +11,3 @@ registration: Closed
 loc_start: Blaine, WA
 loc_finish: Langley, WA
 ---
-<h1><%= @item[:title] %></h1>
-
-<%= render "partials/breadcrumb" %>
-
-<ul>
-  <li><a href="<%= @item[:homepage] %>">Homepage</a></li>
-  <li>Dates: <%= @item[:race_dates] %></li>
-  <li>Location: <%= @item[:loc_start] %> to <%= @item[:loc_finish] %></li>
-  <li>Registration: <%= @item[:registration] %></li>
-</ul>
-
-<%= render "partials/relaymap" %>

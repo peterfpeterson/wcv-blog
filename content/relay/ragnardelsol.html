@@ -4,21 +4,9 @@ layout: default
 description: Ragnar Del Sol 2014 Relay Race Information
 tags: ['2014', Ragnar', 'Ragnar Del Sol', 'Relay Race', 'unlisted']
 homepage: http://www.ragnarrelay.com/race/delsol
-map: 
+map:
 race_dates: Unknown, 2014
 registration: Closed
 loc_start: Wickenburg, AZ
 loc_finish: Tempe, AZ
 ---
-<h1><%= @item[:title] %></h1>
-
-<%= render "partials/breadcrumb" %>
-
-<ul>
-  <li><a href="<%= @item[:homepage] %>">Homepage</a></li>
-  <li>Dates: <%= @item[:race_dates] %></li>
-  <li>Location: <%= @item[:loc_start] %> to <%= @item[:loc_finish] %></li>
-  <li>Registration: <%= @item[:registration] %></li>
-</ul>
-
-<%= render "partials/relaymap" %>

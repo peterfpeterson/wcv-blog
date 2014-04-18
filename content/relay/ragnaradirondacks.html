@@ -11,15 +11,3 @@ registration: Open
 loc_start: Saratoga Springs, NY
 loc_finish: Lake Placid, NY
 ---
-<h1><%= @item[:title] %></h1>
-
-<%= render "partials/breadcrumb" %>
-
-<ul>
-  <li><a href="<%= @item[:homepage] %>">Homepage</a></li>
-  <li>Dates: <%= @item[:race_dates] %></li>
-  <li>Location: <%= @item[:loc_start] %> to <%= @item[:loc_finish] %></li>
-  <li>Registration: <%= @item[:registration] %></li>
-</ul>
-
-<%= render "partials/relaymap" %>

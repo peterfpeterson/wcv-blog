@@ -10,15 +10,4 @@ registration: Closed
 loc_start: Louisville, KY
 loc_finish: Lexington, KY
 ---
-<h1><%= @item[:title] %></h1>
-
-<%= render "partials/breadcrumb" %>
-
-<ul>
-  <li><a href="<%= @item[:homepage] %>">Homepage</a></li>
-  <li>Dates: <%= @item[:race_dates] %></li>
-  <li>Location: <%= @item[:loc_start] %> to <%= @item[:loc_finish] %></li>
-  <li>Registration: <%= @item[:registration] %></li>
-</ul>
-
 <p><em>Race map and leg information from 2013</em></p>
