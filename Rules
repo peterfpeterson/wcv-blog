@@ -27,6 +27,15 @@ compile 'sitemap' do
   filter :haml
 end
 
+compile '/relay/*' do
+  if item.binary?
+    # don’t filter binary items
+  else
+    filter :erb
+    layout 'race'
+  end
+end
+
 compile '*' do
   if item.binary?
     # don’t filter binary items
