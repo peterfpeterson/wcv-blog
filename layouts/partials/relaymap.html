@@ -39,6 +39,20 @@ d3.json("<%= relative_path_to(@item[:map]) %>",
     // set the boundaries and add the topology
     map.fitBounds(bounds);
     map.data.addGeoJson(topology);
+
+    // add listeners
+    map.data.addListener('click', function(event) {
+      var url = "https://www.google.com/maps/preview/place/"
+      url = url + event.latLng.toUrlValue();
+      window.open(url);
+    });
+    map.data.addListener('mouseover', function(event) {
+      //console.log(event);
+      console.log(event.feature.j);
+    });
+    map.data.addListener('mouseout', function(event) {
+      map.data.revertStyle();
+    });
 });
 
 </script>
