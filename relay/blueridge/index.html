@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="/style.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="generator" content="nanoc 3.6.8">
+  <meta name="viewport" content="width=device-width">
   <meta name="description" content="Blue Ridge 2014 Relay Race Information">
   <!-- apis for maps -->
   <script charset="utf-8" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -23,10 +24,10 @@
 </head>
 <body>
 
-<div id="main">
+<div id="headerbg"></div>
+<div id="header">
   <h1>Blue Ridge Relay 2014</h1>
-
-
+  
   
   
   
@@ -42,16 +43,15 @@
   
 
 
-
-<ul>
-  <li><a href="http://www.blueridgerelay.com/">Homepage</a></li>
-  <li>Dates: Sept 5-6, 2014</li>
-  <li>Location: Mouth of Wilson, VA to Ashville, NC</li>
-  <li>Registration: Open</li>
-</ul>
-
-<p><em>Race map and leg information from 2013</em></p>
-
+</div>
+<div id="main">
+  <ul>
+    <li><a href="http://www.blueridgerelay.com/">Homepage</a></li>
+    <li>Dates: Sept 5-6, 2014</li>
+    <li>Location: Mouth of Wilson, VA to Ashville, NC</li>
+  </ul>
+  <p><em>Race map and leg information from 2013</em></p>
+</div>
 
 <style>
   #map {
@@ -65,30 +65,44 @@
 <script>
 var map = new google.maps.Map(d3.select("#map").node(),
                    {zoom: 7,
-                    center: {lat:37.814, lng:-84.970}});
+                    center: {lat:36.08247, lng:-81.95879}
+                    });
 
 d3.json("../maps/2013BlueRidge.json",
   function(error, topology) {
     //console.log(topology);
-    //console.log(d3.geo.centroid(topology))
+    
 
-    // boundaries in d3 coords
-    var bounds = d3.geo.bounds(topology)
-
+    
     // boundaries in google coords
-    var southWest = new google.maps.LatLng(bounds[0][1], bounds[0][0]);
-    var northEast = new google.maps.LatLng(bounds[1][1], bounds[1][0]);
+    var southWest = new google.maps.LatLng(35.59519, -82.55135);
+    var northEast = new google.maps.LatLng(36.62419, -81.44844);
+    
     bounds = new google.maps.LatLngBounds(southWest,northEast);
 
     // set the boundaries and add the topology
     map.fitBounds(bounds);
     map.data.addGeoJson(topology);
+
+    // add listeners
+    map.data.addListener('click', function(event) {
+      var url = "https://www.google.com/maps/preview/place/"
+      url = url + event.latLng.toUrlValue();
+      window.open(url);
+    });
+    map.data.addListener('mouseover', function(event) {
+      //console.log(event);
+      console.log(event.feature.j);
+    });
+    map.data.addListener('mouseout', function(event) {
+      map.data.revertStyle();
+    });
 });
 
 </script>
 
 
-</div>
+<div id="footerbg"></div>
 </body>
 </html>
 
