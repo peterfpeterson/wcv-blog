@@ -15,19 +15,17 @@ tbody tr:nth-child(odd) {
 <h2>Relay Races</h2>
 <table>
   <tr>
+    <th>Dates</th>
     <th>Race</th>
     <th>Start Location</th>
-    <th>Dates</th>
-    <th>Registration</th>
   </tr>
   <% items = items_with_tag("future") %>
   <% items.sort! { |a,b| a[:start_date] <=> b[:start_date] } %>
   <% items.each do |i| %>
   <tr>
+    <td><%= "#{i[:race_dates]}" %></td>
     <td><%= link_to "#{i[:title]}", i %></td>
     <td><%= "#{i[:loc_start]}" %></td>
-    <td><%= "#{i[:race_dates]}" %></td>
-    <td><%= "#{i[:registration]}" %></td>
   </tr>
   <% end %>
 </table>
