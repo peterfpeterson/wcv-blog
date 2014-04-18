@@ -30,6 +30,9 @@ end
 compile '/relay/*' do
   if item.binary?
     # don’t filter binary items
+  elsif item[:layout] == 'default'
+    filter :erb
+    layout 'default'
   else
     filter :erb
     layout 'race'
