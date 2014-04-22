@@ -97,7 +97,10 @@ d3.json("../../maps/2013BourbonChase.json",
 
     // add listeners
     map.data.addListener('click', function(event) {
-      var url = "https://www.google.com/maps/preview/place/"
+      var url = "https://www.google.com/maps/preview/place/";
+      if (/(iPad|iPhone|iPod)/g.test( navigator.userAgent )) {
+        url = "http://maps.apple.com/?ll=";
+      }
       url = url + event.latLng.toUrlValue();
       window.open(url);
     });
