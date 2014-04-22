@@ -19,4 +19,6 @@ end
 group :test do
   gem 'guard-nanoc'
   gem 'guard-bundler'
+  gem 'nokogiri'
+  gem 'w3c_validators'
 end
