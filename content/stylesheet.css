@@ -53,6 +53,14 @@ a:hover {
   margin-right: auto;
 }
 
+.about {
+  float: left;
+}
+
+.social {
+  float: right;
+}
+
 #main {
   padding: 20px 20px 20px 20px;
 

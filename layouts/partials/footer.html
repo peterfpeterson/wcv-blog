@@ -1,7 +1,12 @@
 <div id="footerbg"></div>
 <div id="footer">
 <% pageURL = "http://www.whitecargovan.com" + @item.path() %>
-<p>
+
+<span class="about">
+<%= link_to('About White Cargo Van', '/about') %>
+</span>
+
+<span class="social">
 <!-- twitter -->
 <a href="https://twitter.com/intent/tweet?url=<%= pageURL %>&text=<%= @item[:title] %>&via=WhiteCargoVan" target="_blank">Twitter</a>,
 <!-- facebook like -->
@@ -16,8 +21,7 @@
 <a href="http://reddit.com/submit?url=<%= pageURL %>&title=<%= @item[:title] %>" target="_blank">Reddit</a>,
 <!-- email -->
 <a href="mailto:?subject=White%20Cargo%20Van%20<%= @item[:title] %>&body=<%= pageURL %>" target="_blank">Email</a>
-
-</p>
+</span>
 </div>
 </body>
 </html>
