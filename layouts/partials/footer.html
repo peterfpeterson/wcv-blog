@@ -1,7 +1,11 @@
 <div id="footerbg"></div>
 <div id="footer">
-<% pageURL = "http://www.whitecargovan.com" + @item.path() %>
-<% pageTitle = @item[:title] %>
+<% pageURL = @site.config[:base_url] + @item.path() %>
+<% if @item[:title] %>
+<%   pageTitle = html_escape(@item[:title].to_s) %>
+<% else %>
+<%   pageTitle = "" %>
+<% end %>
 
 <span class="about">
 <%= link_to('About White Cargo Van', '/about') %>
