@@ -27,9 +27,9 @@
 
 <em>Helping friends find sweaty friends in the dark</em>
 
-<p>This site is dedicated to overnight relays and the logistics involved in
-planning and executing one. Hopefully you will find a race, plan your team's
-exchanges, and arrive with sufficient time to exchange runners with minimum
+<p>This site is dedicated to overnight relays and the logistics involved in 
+planning and executing one. Hopefully you will find a race, plan your team's 
+exchanges, and arrive with sufficient time to exchange runners with minimum 
 effort.</p>
 
 <p><a href="relay">List of Relay Races</a></p>
@@ -161,7 +161,7 @@ var men_duration = (2013-1908)*20;
 var women_start = (1926-1908)*20;
 var women_duration = (2003-1926)*20;
 
-d3.csv("marathon_men.csv",
+d3.csv("marathon_men.csv", 
   function(d) {
     return {
       date: parseDate(d.date),
@@ -193,7 +193,7 @@ d3.csv("marathon_men.csv",
 
 });
 
-d3.csv("marathon_women.csv",
+d3.csv("marathon_women.csv", 
   function(d) {
     return {
       date: parseDate(d.date),
@@ -332,6 +332,30 @@ function mousemove() {
 </script>
 </div>
 <div id="footerbg"></div>
+<div id="footer">
+
+
+<span class="about">
+<a href="/about">About White Cargo Van</a>
+</span>
+
+<span class="social">
+<!-- twitter -->
+<a href="https://twitter.com/intent/tweet?url=http://www.whitecargovan.com/&text=Home&via=WhiteCargoVan" target="_blank">Twitter</a>,
+<!-- facebook like -->
+<a href="https://facebook.com/sharer.php?u=http://www.whitecargovan.com/" target="_blank">Facebook</a>,
+<!-- g+ -->
+<a href="https://plus.google.com/share?url=http://www.whitecargovan.com/" target="_blank">Google+</a>,
+<!-- pinterest &media=URL of image to pin -->
+<a href="http://pinterest.com/pin/create/button/?url=http://www.whitecargovan.com/&description=Home" target="_blank">Pinterest</a>,
+<!-- digg -->
+<a href="http://digg.com/submit?url=http://www.whitecargovan.com/" target="_blank">Digg</a>,
+<!-- reddit -->
+<a href="http://reddit.com/submit?url=http://www.whitecargovan.com/&title=Home" target="_blank">Reddit</a>,
+<!-- email -->
+<a href="mailto:?subject=White%20Cargo%20Van%20Home&body=http://www.whitecargovan.com/" target="_blank">Email</a>
+</span>
+</div>
 </body>
 </html>
 
