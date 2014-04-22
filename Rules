@@ -28,6 +28,10 @@ compile 'sitemap' do
   filter :haml
 end
 
+compile '/CNAME' do
+  # just here to quiet nanoc check stale
+end
+
 compile '/relay/*' do
   if item.binary?
     # don’t filter binary items
@@ -64,6 +68,10 @@ end
 
 route '/stylesheet/' do
   '/style.css'
+end
+
+route '/CNAME' do
+  '/CNAME'
 end
 
 route 'sitemap' do
