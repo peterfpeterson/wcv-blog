@@ -14,6 +14,7 @@
 #   because “*” matches zero or more characters.
 
 ignore '/relay/maps/README'
+ignore '/relay/maps/CONTRIBUTING'
 ignore '*~'
 ignore '*/*~'
 ignore '#*#'
@@ -30,12 +31,13 @@ end
 compile '/relay/*' do
   if item.binary?
     # don’t filter binary items
-  elsif item[:layout] == 'default'
-    filter :erb
-    layout 'default'
   else
+    if item[:layout] == 'default'
+      layout 'default'
+    else
+      layout 'race'
+    end
     filter :erb
-    layout 'race'
   end
 end
 
@@ -43,8 +45,20 @@ compile '*' do
   if item.binary?
     # don’t filter binary items
   else
-    filter :erb
-    layout 'default'
+    case item[:extension]
+    when 'haml'
+      filter :haml
+    else
+      filter :erb
+    end
+    case item[:layout]
+    when 'default'
+      layout 'default'
+    when 'race'
+      layout 'race'
+    else
+      layout 'default'
+    end
   end
 end
 
