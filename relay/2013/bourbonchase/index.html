@@ -71,47 +71,31 @@
 var map = new google.maps.Map(d3.select("#map").node(),
                    {zoom: 7
                     });
+// add the data
+map.data.loadGeoJson('/relay/maps/2013BourbonChase.json');
 
-d3.json("../../maps/2013BourbonChase.json",
-  function(error, topology) {
-    //console.log(topology);
-    
-    console.log(d3.geo.centroid(topology))
-    
+// set the boundaries
+var southWest = new google.maps.LatLng();
+var northEast = new google.maps.LatLng();
+var bounds = new google.maps.LatLngBounds(southWest,northEast);
+map.fitBounds(bounds);
 
-    
-    // boundaries in d3 coords
-    var bounds = d3.geo.bounds(topology)
-    console.log(bounds)
-
-    // boundaries in google coords
-    var southWest = new google.maps.LatLng(bounds[0][1], bounds[0][0]);
-    var northEast = new google.maps.LatLng(bounds[1][1], bounds[1][0]);
-    
-    bounds = new google.maps.LatLngBounds(southWest,northEast);
-
-    // set the boundaries and add the topology
-    map.fitBounds(bounds);
-    map.data.addGeoJson(topology);
-
-    // add listeners
-    map.data.addListener('click', function(event) {
-      var url = "https://www.google.com/maps/preview/place/";
-      if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
-        url = "http://maps.apple.com/?q=";
-      }
-      url = url + event.latLng.toUrlValue();
-      window.open(url);
-    });
-    map.data.addListener('mouseover', function(event) {
-      //console.log(event);
-      console.log(event.feature.j);
-    });
-    map.data.addListener('mouseout', function(event) {
-      map.data.revertStyle();
-    });
+// add listeners
+map.data.addListener('click', function(event) {
+  var url = "https://www.google.com/maps/preview/place/";
+  if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
+    url = "http://maps.apple.com/?q=";
+  }
+  url = url + event.latLng.toUrlValue();
+  window.open(url);
 });
-
+map.data.addListener('mouseover', function(event) {
+  //console.log(event);
+  console.log(event.feature.j);
+});
+map.data.addListener('mouseout', function(event) {
+  map.data.revertStyle();
+});
 </script>
 
 
@@ -123,25 +107,27 @@ d3.json("../../maps/2013BourbonChase.json",
 
 
 
+
 <span class="about">
 <a href="/about">About White Cargo Van</a>
 </span>
 
 <span class="social">
 <!-- twitter -->
-<a href="https://twitter.com/intent/tweet?url=http://www.whitecargovan.com/relay/2013/bourbonchase/&text=Bourbon Chase 2013&via=WhiteCargoVan" target="_blank">Twitter</a>,
+<a href="https://twitter.com/intent/tweet?url=http://www.whitecargovan.com/relay/2013/bourbonchase/&text=Bourbon%20Chase%202013&via=WhiteCargoVan" target="_blank">Twitter</a>,
 <!-- facebook like -->
 <a href="https://facebook.com/sharer.php?u=http://www.whitecargovan.com/relay/2013/bourbonchase/" target="_blank">Facebook</a>,
 <!-- g+ -->
 <a href="https://plus.google.com/share?url=http://www.whitecargovan.com/relay/2013/bourbonchase/" target="_blank">Google+</a>,
-<!-- pinterest &media=URL of image to pin -->
-<a href="http://pinterest.com/pin/create/button/?url=http://www.whitecargovan.com/relay/2013/bourbonchase/&description=Bourbon Chase 2013" target="_blank">Pinterest</a>,
+<!-- pinterest &media=URL of image to pin
+<a href="http://pinterest.com/pin/create/button/?url=http://www.whitecargovan.com/relay/2013/bourbonchase/&description=Bourbon%20Chase%202013" target="_blank">Pinterest</a>,
+-->
 <!-- digg -->
 <a href="http://digg.com/submit?url=http://www.whitecargovan.com/relay/2013/bourbonchase/" target="_blank">Digg</a>,
 <!-- reddit -->
-<a href="http://reddit.com/submit?url=http://www.whitecargovan.com/relay/2013/bourbonchase/&title=Bourbon Chase 2013" target="_blank">Reddit</a>,
+<a href="http://reddit.com/submit?url=http://www.whitecargovan.com/relay/2013/bourbonchase/&title=Bourbon%20Chase%202013" target="_blank">Reddit</a>,
 <!-- email -->
-<a href="mailto:?subject=White%20Cargo%20Van%20-%20Bourbon Chase 2013&body=http://www.whitecargovan.com/relay/2013/bourbonchase/" target="_blank">Email</a>
+<a href="mailto:?subject=White%20Cargo%20Van%20-%20Bourbon%20Chase%202013&body=http://www.whitecargovan.com/relay/2013/bourbonchase/" target="_blank">Email</a>
 </span>
 </div>
 </body>
