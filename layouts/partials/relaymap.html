@@ -10,9 +10,8 @@
 
 <script>
 var map = new google.maps.Map(d3.select("#map").node(),
-                   {zoom: 7<% if @item[:gps_center] %>,
-                    center: {<%= @item[:gps_center] %>}<% end %>
-                    });
+                  {zoom: 7,
+                   center: {<%= @item[:gps_center] %>}});
 // add the data
 map.data.loadGeoJson('<%= @item[:map] %>');
 
@@ -33,10 +32,31 @@ map.data.addListener('click', function(event) {
 });
 map.data.addListener('mouseover', function(event) {
   //console.log(event);
-  console.log(event.feature.j);
+  //console.log(event.feature.j);
 });
 map.data.addListener('mouseout', function(event) {
   map.data.revertStyle();
+});
+
+// Origins, anchor positions and coordinates of the marker
+// increase in the X direction to the right and in
+// the Y direction down.
+//var image = {
+//  url: 'images/beachflag.png',
+  // This marker is 20 pixels wide by 32 pixels tall.
+//  size: new google.maps.Size(20, 32),
+  // The origin for this image is 0,0.
+//  origin: new google.maps.Point(0,0),
+  // The anchor for this image is the base of the flagpole at 0,32.
+//  anchor: new google.maps.Point(0, 32)
+//};
+
+// set up the markers and titles
+map.data.setStyle(function(feature) {
+  //console.log(feature);
+  // also should return the icon
+  return {title: "Leg "+feature.getProperty('leg')
+                 +": "+feature.getProperty("miles")+" miles"};
 });
 </script>
 <% end %>
