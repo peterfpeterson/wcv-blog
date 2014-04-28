@@ -8,7 +8,8 @@ module WebApiHelper
     elsif name == "d3"
       result << "http://d3js.org/d3.v3.min.js"
     else
-      raise "Do not understand argument \"#{name}\""
+      # just use the supplied name as is
+      result << name
     end
     result << "\"></script>"
 
