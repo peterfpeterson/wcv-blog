@@ -20,7 +20,6 @@
   ga('create', 'UA-49930554-1', 'whitecargovan.com');
   ga('send', 'pageview');
   </script>
-
 </head>
 <body>
 
@@ -88,7 +87,7 @@ d3.json("../maps/2013BlueRidge.json",
     map.data.addListener('click', function(event) {
       var url = "https://www.google.com/maps/preview/place/";
       if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
-        url = "http://maps.apple.com/?ll=";
+        url = "http://maps.apple.com/?q=";
       }
       url = url + event.latLng.toUrlValue();
       window.open(url);
