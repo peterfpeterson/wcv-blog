@@ -15,10 +15,16 @@
 
 ignore '/relay/maps/README'
 ignore '/relay/maps/CONTRIBUTING'
+ignore '/assests/javascript/dynatable-0.3.1/CONTRIBUTING.md'
+ignore '/assests/javascript/dynatable-0.3.1/LICENSE.txt'
+ignore '/assests/javascript/dynatable-0.3.1/PROPRIETARY_LICENSE.html'
+ignore '/assests/javascript/dynatable-0.3.1/README.md'
 ignore '*~'
 ignore '*/*~'
 ignore '#*#'
 ignore '*/#*#'
+
+passthrough '/assests/*'
 
 compile '/stylesheet/' do
   # don’t filter or layout
