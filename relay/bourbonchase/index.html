@@ -78,7 +78,7 @@ map.fitBounds(bounds);
 map.data.addListener('click', function(event) {
   var url = "https://www.google.com/maps/place/";
   if ( /(iPad)/g.test( navigator.userAgent ) ) { // |iPhone|iPod don't work
-    url = "https://maps.apple.com/?ll=";
+    url = "https://maps.apple.com/?q=";
   }
   url = url + event.latLng.toUrlValue();
   window.open(url);
