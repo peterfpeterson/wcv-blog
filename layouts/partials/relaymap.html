@@ -24,8 +24,8 @@ map.fitBounds(bounds);
 // add listeners
 map.data.addListener('click', function(event) {
   var url = "https://www.google.com/maps/place/";
-  if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
-    url = "http://maps.apple.com/?ll=";
+  if ( /(iPad)/g.test( navigator.userAgent ) ) { // |iPhone|iPod don't work
+    url = "https://maps.apple.com/?q=";
   }
   url = url + event.latLng.toUrlValue();
   window.open(url);
@@ -33,7 +33,7 @@ map.data.addListener('click', function(event) {
 map.data.addListener('mouseover', function(event) {
   //console.log(event);
   //console.log(event.feature.j);
-  //console.log(event.latLng.toUrlValue());
+  //console.log("http://maps.apple.com/?ll=" +event.latLng.toUrlValue());
 });
 map.data.addListener('mouseout', function(event) {
   map.data.revertStyle();
