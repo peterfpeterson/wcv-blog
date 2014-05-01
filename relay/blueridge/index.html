@@ -4,7 +4,7 @@
   <title>White Cargo Van - Blue Ridge Relay 2014</title>
   <link rel="stylesheet" href="/style.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="generator" content="nanoc 3.6.8">
+  <meta name="generator" content="nanoc 3.6.9">
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="Blue Ridge 2014 Relay Race Information">
   <!-- apis for maps -->
@@ -76,9 +76,9 @@ map.fitBounds(bounds);
 
 // add listeners
 map.data.addListener('click', function(event) {
-  var url = "https://www.google.com/maps/preview/place/";
+  var url = "https://www.google.com/maps/place/";
   if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
-    url = "http://maps.apple.com/?q=";
+    url = "http://maps.apple.com/?ll=";
   }
   url = url + event.latLng.toUrlValue();
   window.open(url);
@@ -86,6 +86,7 @@ map.data.addListener('click', function(event) {
 map.data.addListener('mouseover', function(event) {
   //console.log(event);
   //console.log(event.feature.j);
+  //console.log(event.latLng.toUrlValue());
 });
 map.data.addListener('mouseout', function(event) {
   map.data.revertStyle();
