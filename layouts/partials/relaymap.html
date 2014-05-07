@@ -23,12 +23,16 @@ map.fitBounds(bounds);
 
 // add listeners
 map.data.addListener('click', function(event) {
-  var url = "https://www.google.com/maps/place/";
-  if ( /(iPad)/g.test( navigator.userAgent ) ) { // |iPhone|iPod don't work
-    url = "https://maps.apple.com/?q=";
+var url = event.latLng.toUrlValue();
+  if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) { // |iPhone|iPod don't work
+    url = "https://maps.apple.com/?q=" + url;
+    window.location = url;
   }
-  url = url + event.latLng.toUrlValue();
-  window.open(url);
+  else
+  {
+    url = "https://www.google.com/maps/place/" + url;
+    window.open(url);
+  }
 });
 map.data.addListener('mouseover', function(event) {
   //console.log(event);
