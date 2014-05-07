@@ -24,15 +24,15 @@ tbody tr:nth-child(odd) {
 var data =
   [
   {"distance":"1 mile",
-   "evenPaceTime": "0:08:00"},
+   "evenPaceTime": 480},
   {"distance":"5 km",
-   "evenPaceTime": "0:24:48"},
+   "evenPaceTime": 1488},
   {"distance":"10 km",
-   "evenPaceTime": "0:49:36"},
+   "evenPaceTime": 2976},
   {"distance":"half marathon",
-   "evenPaceTime": "1:44:48"},
+   "evenPaceTime": 6288},
   {"distance":"marathon",
-   "evenPaceTime": "3:29:36"}
+   "evenPaceTime": 12576}
   ];
 
 // configure how the table fills in
@@ -47,10 +47,45 @@ $.dynatableSetup({
   }
 });
 
+function pad(number, length) {
+
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+
+    return str;
+
+}
+
+function secToTime(seconds)
+{
+  var hh = Math.floor(seconds / 3600);
+  var ss = seconds - (hh * 3600);
+  var mm = Math.floor(ss / 60);
+  ss = ss - (mm * 60);
+
+  return pad(hh, 1) +":" + pad(mm,2) + ":" + pad(ss,2);
+}
+
+// Function that renders the list items from our records
+function rowWriter(rowIndex, record, columns, cellWriter) {
+  var row = '<tr>';
+  row = row + "<td>" + record.distance + "</td>";
+  row = row + "<td><center>" + secToTime(record.evenPaceTime) + "</center></td>";
+  // if (rowIndex % 3 === 0) { cssClass += ' first'; }
+  // li = '<li class="' + cssClass + '"><div class="thumbnail"><div class="thumbnail-image">' + record.thumbnail + '</div><div class="caption">' + record.caption + '</div></div></li>';
+  row = row + '</tr>'
+  return row;
+}
+
 // link the json data to the table
 $('#my-final-table').dynatable({
   dataset: {
     records: data
+  },
+  writers: {
+    _rowWriter: rowWriter
   }
 });
 // dynatable.dom.update();
