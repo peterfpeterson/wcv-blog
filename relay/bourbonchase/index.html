@@ -77,11 +77,12 @@ map.fitBounds(bounds);
 // add listeners
 map.data.addListener('click', function(event) {
   var url = "https://www.google.com/maps/place/";
-  if ( /(iPad)/g.test( navigator.userAgent ) ) { // |iPhone|iPod don't work
+  if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) { // |iPhone|iPod don't work
     url = "https://maps.apple.com/?q=";
   }
   url = url + event.latLng.toUrlValue();
-  window.open(url);
+  // window.open(url);
+  window.location = url;
 });
 map.data.addListener('mouseover', function(event) {
   //console.log(event);
