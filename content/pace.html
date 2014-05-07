@@ -1,0 +1,57 @@
+---
+title: Pace Calculation
+layout: default
+---
+<%= web_api("/assests/javascript/dynatable-0.3.1/vendor/jquery-1.7.2.min.js") %>
+<%= web_api("/assests/javascript/dynatable-0.3.1/jquery.dynatable.js") %>
+
+<style>
+tbody tr:nth-child(odd) {
+   background-color: #e3e3e3;
+}
+</style>
+
+<table id="my-final-table">
+  <thead>
+    <th>Distance</th>
+    <th>Even Pace Time</th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+var data =
+  [
+  {"distance":"1 mile",
+   "evenPaceTime": "0:08:00"},
+  {"distance":"5 km",
+   "evenPaceTime": "0:24:48"},
+  {"distance":"10 km",
+   "evenPaceTime": "0:49:36"},
+  {"distance":"half marathon",
+   "evenPaceTime": "1:44:48"},
+  {"distance":"marathon",
+   "evenPaceTime": "3:29:36"}
+  ];
+
+// configure how the table fills in
+$.dynatableSetup({
+  features: {
+    paginate: false,
+    sort: false,
+    pushState: true,
+    search: false,
+    recordCount: false,
+    perPageSelect: false
+  }
+});
+
+// link the json data to the table
+$('#my-final-table').dynatable({
+  dataset: {
+    records: data
+  }
+});
+// dynatable.dom.update();
+</script>
