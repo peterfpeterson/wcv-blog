@@ -11,6 +11,17 @@ tbody tr:nth-child(odd) {
 }
 </style>
 
+<table id="inputs">
+  <thead>
+    <th>Distance</th>
+    <th>Time</th>
+  </thead>
+  <tr>
+    <td><input type="text" name="distance" id="inDistance" value="1.0"/></td>
+    <td><input type="text" name="time" id="inTime" value="8:00"/></td>
+  </tr>
+</table>
+
 <table id="my-final-table">
   <thead>
     <th>Distance</th>
@@ -21,6 +32,8 @@ tbody tr:nth-child(odd) {
 </table>
 
 <script>
+var $table = $('#my-final-table');
+
 // create the data
 function toJsonTable(minutes, seconds)
 {
@@ -35,6 +48,25 @@ function toJsonTable(minutes, seconds)
   return data;
 }
 var data = toJsonTable(8,0);
+
+function updateTable()
+{
+  var distance = $('#inDistance').val();
+  var time = $('#inTime').val();
+  var pace = Math.floor(timeToSec(time) / distance);
+
+  var dynatable = $('#my-final-table').data('dynatable');
+  dynatable.settings.dataset.originalRecords = toJsonTable(0, pace);
+  dynatable.process();
+}
+
+var $inputs = $('#inputs');
+$inputs.bind('input', updateTable);
+
+$(document).ready(function(){
+    $('#inDistance').change(function(){ updateTable(); });
+    $('#inTime').change(function(){ updateTable(); });
+});
 
 // configure how the table fills in
 $.dynatableSetup({
@@ -64,9 +96,27 @@ function secToTime(seconds)
   var hh = Math.floor(seconds / 3600);
   var ss = seconds - (hh * 3600);
   var mm = Math.floor(ss / 60);
-  ss = ss - (mm * 60);
+  ss = Math.floor(ss - (mm * 60));
 
   return pad(hh, 1) +":" + pad(mm,2) + ":" + pad(ss,2);
+}
+
+function timeToSec(time)
+{
+  var splitted = time.split(":");
+  if (splitted.length < 2)
+  {
+    return Math.floor(time);
+  }
+  else if (splitted.length == 2)
+  { // mm:ss
+    return Math.floor(splitted[0])*60 + Math.floor(splitted[1]);
+  }
+  else if (splitted.length == 3)
+  { // hh:mm:ss
+    return Math.floor(splitted[0])*3600 + Math.floor(splitted[1])*60 + Math.floor(splitted[2]);
+  }
+  return -1;
 }
 
 // Function that renders the list items from our records
