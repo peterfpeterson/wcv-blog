@@ -21,19 +21,20 @@ tbody tr:nth-child(odd) {
 </table>
 
 <script>
-var data =
-  [
-  {"distance":"1 mile",
-   "evenPaceTime": 480},
-  {"distance":"5 km",
-   "evenPaceTime": 1488},
-  {"distance":"10 km",
-   "evenPaceTime": 2976},
-  {"distance":"half marathon",
-   "evenPaceTime": 6288},
-  {"distance":"marathon",
-   "evenPaceTime": 12576}
-  ];
+// create the data
+function toJsonTable(minutes, seconds)
+{
+  seconds = 60*minutes+seconds;
+
+  var data = [];
+  data.push({distance:"1 mile",evenPaceTime:seconds});
+  data.push({distance:"5 km",evenPaceTime:(seconds*3.1)});
+  data.push({distance:"10 km",evenPaceTime:(seconds*6.2)});
+  data.push({distance:"half marathon",evenPaceTime:(seconds*13.1)});
+  data.push({distance:"marathon",evenPaceTime:(seconds*26.2)});
+  return data;
+}
+var data = toJsonTable(8,0);
 
 // configure how the table fills in
 $.dynatableSetup({
