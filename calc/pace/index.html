@@ -24,6 +24,7 @@
 <div id="main">
   <script charset="utf-8" src="/assests/javascript/dynatable-0.3.1/vendor/jquery-1.7.2.min.js"></script>
 <script charset="utf-8" src="/assests/javascript/dynatable-0.3.1/jquery.dynatable.js"></script>
+<script charset="utf-8" src="/js/time.js"></script>
 
 <style>
 tbody tr:nth-child(odd) {
@@ -31,7 +32,7 @@ tbody tr:nth-child(odd) {
 }
 </style>
 
-<p id="inputs">I went
+<p id="inputs">I ran
   <input type="text" name="distance" id="inDistance" value="1.0"/>
   miles in
 <input type="text" name="time" id="inTime" value="8:00"/> hh:mm:ss
@@ -97,45 +98,6 @@ $.dynatableSetup({
   }
 });
 
-function pad(number, length) {
-
-    var str = '' + number;
-    while (str.length < length) {
-        str = '0' + str;
-    }
-
-    return str;
-
-}
-
-function secToTime(seconds)
-{
-  var hh = Math.floor(seconds / 3600);
-  var ss = seconds - (hh * 3600);
-  var mm = Math.floor(ss / 60);
-  ss = Math.floor(ss - (mm * 60));
-
-  return pad(hh, 1) +":" + pad(mm,2) + ":" + pad(ss,2);
-}
-
-function timeToSec(time)
-{
-  var splitted = time.split(":");
-  if (splitted.length < 2)
-  {
-    return Math.floor(time);
-  }
-  else if (splitted.length == 2)
-  { // mm:ss
-    return Math.floor(splitted[0])*60 + Math.floor(splitted[1]);
-  }
-  else if (splitted.length == 3)
-  { // hh:mm:ss
-    return Math.floor(splitted[0])*3600 + Math.floor(splitted[1])*60 + Math.floor(splitted[2]);
-  }
-  return -1;
-}
-
 // Function that renders the list items from our records
 function rowWriter(rowIndex, record, columns, cellWriter) {
   var row = '<tr>';
@@ -173,20 +135,20 @@ $('#my-final-table').dynatable({
 
 <span class="social">
 <!-- twitter -->
-<a href="https://twitter.com/intent/tweet?url=http://www.whitecargovan.com/pace/&text=Pace%20Calculation&via=WhiteCargoVan" target="_blank">Twitter</a>,
+<a href="https://twitter.com/intent/tweet?url=http://www.whitecargovan.com/calc/pace/&text=Pace%20Calculation&via=WhiteCargoVan" target="_blank">Twitter</a>,
 <!-- facebook like -->
-<a href="https://facebook.com/sharer.php?u=http://www.whitecargovan.com/pace/" target="_blank">Facebook</a>,
+<a href="https://facebook.com/sharer.php?u=http://www.whitecargovan.com/calc/pace/" target="_blank">Facebook</a>,
 <!-- g+ -->
-<a href="https://plus.google.com/share?url=http://www.whitecargovan.com/pace/" target="_blank">Google+</a>,
+<a href="https://plus.google.com/share?url=http://www.whitecargovan.com/calc/pace/" target="_blank">Google+</a>,
 <!-- pinterest &media=URL of image to pin
-<a href="http://pinterest.com/pin/create/button/?url=http://www.whitecargovan.com/pace/&description=Pace%20Calculation" target="_blank">Pinterest</a>,
+<a href="http://pinterest.com/pin/create/button/?url=http://www.whitecargovan.com/calc/pace/&description=Pace%20Calculation" target="_blank">Pinterest</a>,
 -->
 <!-- digg -->
-<a href="http://digg.com/submit?url=http://www.whitecargovan.com/pace/" target="_blank">Digg</a>,
+<a href="http://digg.com/submit?url=http://www.whitecargovan.com/calc/pace/" target="_blank">Digg</a>,
 <!-- reddit -->
-<a href="http://reddit.com/submit?url=http://www.whitecargovan.com/pace/&title=Pace%20Calculation" target="_blank">Reddit</a>,
+<a href="http://reddit.com/submit?url=http://www.whitecargovan.com/calc/pace/&title=Pace%20Calculation" target="_blank">Reddit</a>,
 <!-- email -->
-<a href="mailto:?subject=White%20Cargo%20Van%20-%20Pace%20Calculation&body=http://www.whitecargovan.com/pace/" target="_blank">Email</a>
+<a href="mailto:?subject=White%20Cargo%20Van%20-%20Pace%20Calculation&body=http://www.whitecargovan.com/calc/pace/" target="_blank">Email</a>
 </span>
 </div>
 </body>

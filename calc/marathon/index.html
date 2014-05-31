@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>White Cargo Van - Pace Calculation</title>
+  <link rel="stylesheet" href="/style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="nanoc 3.6.9">
+  <meta name="viewport" content="width=device-width">
+  
+  
+  <!-- info for goolge analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49930554-1', 'whitecargovan.com');
+  ga('send', 'pageview');
+  </script>
+</head>
+<body>
+
+<div id="main">
+  <script charset="utf-8" src="/assests/javascript/dynatable-0.3.1/vendor/jquery-1.7.2.min.js"></script>
+<script charset="utf-8" src="/assests/javascript/dynatable-0.3.1/jquery.dynatable.js"></script>
+<script charset="utf-8" src="/js/time.js"></script>
+
+<style>
+tbody tr:nth-child(odd) {
+   background-color: #e3e3e3;
+}
+</style>
+
+<p id="inputs">I will run my marathon in
+<input type="text" name="time" id="inTime" value="3:30:00"/> hh:mm:ss
+</p>
+
+<table id="my-final-table">
+  <thead>
+    <th>Distance</th>
+    <th>Pace</th>
+    <th>Cumulative</th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+var $table = $('#my-final-table');
+
+// create the data
+function toJsonTable(minutes, seconds)
+{
+  seconds = 60*minutes+seconds;
+
+  var data = [];
+  for (i=0; i<26; i++) {
+    data.push({distance:i+" mile",pace:seconds,cumulative:(seconds*i)});
+  }
+  data.push({distance:"26.2 mile",pace:seconds,cumulative:(seconds*26.2)});
+  return data;
+}
+var data = toJsonTable(8,0);
+
+function updateTable()
+{
+  var distance = 26.2;
+  var time = $('#inTime').val();
+  var pace = Math.floor(timeToSec(time) / distance);
+
+  var dynatable = $('#my-final-table').data('dynatable');
+  dynatable.settings.dataset.originalRecords = toJsonTable(0, pace);
+  dynatable.process();
+}
+
+var $inputs = $('#inputs');
+$inputs.bind('input', updateTable);
+
+$(document).ready(function(){
+    $('#inDistance').change(function(){ updateTable(); });
+    $('#inTime').change(function(){ updateTable(); });
+});
+
+// configure how the table fills in
+$.dynatableSetup({
+  features: {
+    paginate: false,
+    sort: false,
+    pushState: true,
+    search: false,
+    recordCount: false,
+    perPageSelect: false
+  }
+});
+
+// Function that renders the list items from our records
+function rowWriter(rowIndex, record, columns, cellWriter) {
+  var row = '<tr>';
+  row = row + "<td>" + record.distance + "</td>";
+  row = row + "<td><center>" + secToTime(record.pace) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.cumulative) + "</center></td>";
+  // if (rowIndex % 3 === 0) { cssClass += ' first'; }
+  // li = '<li class="' + cssClass + '"><div class="thumbnail"><div class="thumbnail-image">' + record.thumbnail + '</div><div class="caption">' + record.caption + '</div></div></li>';
+  row = row + '</tr>'
+  return row;
+}
+
+// link the json data to the table
+$('#my-final-table').dynatable({
+  dataset: {
+    records: data
+  },
+  writers: {
+    _rowWriter: rowWriter
+  }
+});
+// dynatable.dom.update();
+</script>
+</div>
+<div id="footerbg"></div>
+<div id="footer">
+
+
+
+
+
+
+<span class="about">
+<a href="/about">About White Cargo Van</a>
+</span>
+
+<span class="social">
+<!-- twitter -->
+<a href="https://twitter.com/intent/tweet?url=http://www.whitecargovan.com/calc/marathon/&text=Pace%20Calculation&via=WhiteCargoVan" target="_blank">Twitter</a>,
+<!-- facebook like -->
+<a href="https://facebook.com/sharer.php?u=http://www.whitecargovan.com/calc/marathon/" target="_blank">Facebook</a>,
+<!-- g+ -->
+<a href="https://plus.google.com/share?url=http://www.whitecargovan.com/calc/marathon/" target="_blank">Google+</a>,
+<!-- pinterest &media=URL of image to pin
+<a href="http://pinterest.com/pin/create/button/?url=http://www.whitecargovan.com/calc/marathon/&description=Pace%20Calculation" target="_blank">Pinterest</a>,
+-->
+<!-- digg -->
+<a href="http://digg.com/submit?url=http://www.whitecargovan.com/calc/marathon/" target="_blank">Digg</a>,
+<!-- reddit -->
+<a href="http://reddit.com/submit?url=http://www.whitecargovan.com/calc/marathon/&title=Pace%20Calculation" target="_blank">Reddit</a>,
+<!-- email -->
+<a href="mailto:?subject=White%20Cargo%20Van%20-%20Pace%20Calculation&body=http://www.whitecargovan.com/calc/marathon/" target="_blank">Email</a>
+</span>
+</div>
+</body>
+</html>
+

@@ -4,7 +4,7 @@
   <title>White Cargo Van - Home</title>
   <link rel="stylesheet" href="/style.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="generator" content="nanoc 3.6.8">
+  <meta name="generator" content="nanoc 3.6.9">
   <meta name="viewport" content="width=device-width">
   
   
@@ -26,12 +26,16 @@
 
 <em>Helping friends find sweaty friends in the dark</em>
 
-<p>This site is dedicated to overnight relays and the logistics involved in 
-planning and executing one. Hopefully you will find a race, plan your team's 
-exchanges, and arrive with sufficient time to exchange runners with minimum 
+<p>This site is dedicated to overnight relays and the logistics involved in
+planning and executing one. Hopefully you will find a race, plan your team's
+exchanges, and arrive with sufficient time to exchange runners with minimum
 effort.</p>
 
-<p><a href="relay">List of Relay Races</a></p>
+<ul>
+<li><a href="relay">List of Relay Races</a></li>
+<li><a href="calc/pace">Pace Calculator</a></li>
+<li><a href="calc/marathon">Marathon Calculator</a></li>
+</ul>
 <br>
 
 <h3>Marathon Record Times</h3>
@@ -160,7 +164,7 @@ var men_duration = (2013-1908)*20;
 var women_start = (1926-1908)*20;
 var women_duration = (2003-1926)*20;
 
-d3.csv("marathon_men.csv", 
+d3.csv("marathon_men.csv",
   function(d) {
     return {
       date: parseDate(d.date),
@@ -192,7 +196,7 @@ d3.csv("marathon_men.csv",
 
 });
 
-d3.csv("marathon_women.csv", 
+d3.csv("marathon_women.csv",
   function(d) {
     return {
       date: parseDate(d.date),
