@@ -31,16 +31,11 @@ tbody tr:nth-child(odd) {
 }
 </style>
 
-<table id="inputs">
-  <thead>
-    <th>Distance</th>
-    <th>Time</th>
-  </thead>
-  <tr>
-    <td><input type="text" name="distance" id="inDistance" value="1.0"/></td>
-    <td><input type="text" name="time" id="inTime" value="8:00"/></td>
-  </tr>
-</table>
+<p id="inputs">I went
+  <input type="text" name="distance" id="inDistance" value="1.0"/>
+  miles in
+<input type="text" name="time" id="inTime" value="8:00"/> hh:mm:ss
+</p>
 
 <table id="my-final-table">
   <thead>
@@ -62,8 +57,10 @@ function toJsonTable(minutes, seconds)
   var data = [];
   data.push({distance:"1 mile",evenPaceTime:seconds});
   data.push({distance:"5 km",evenPaceTime:(seconds*3.1)});
+  data.push({distance:"8 km",evenPaceTime:(seconds*5.0)});
   data.push({distance:"10 km",evenPaceTime:(seconds*6.2)});
   data.push({distance:"half marathon",evenPaceTime:(seconds*13.1)});
+  data.push({distance:"30 km", evenPaceTime:(seconds*18.6)});
   data.push({distance:"marathon",evenPaceTime:(seconds*26.2)});
   return data;
 }
