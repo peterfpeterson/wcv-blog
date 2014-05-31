@@ -4,6 +4,7 @@ layout: default
 ---
 <%= web_api("/assests/javascript/dynatable-0.3.1/vendor/jquery-1.7.2.min.js") %>
 <%= web_api("/assests/javascript/dynatable-0.3.1/jquery.dynatable.js") %>
+<%= web_api("/js/time.js") %>
 
 <style>
 tbody tr:nth-child(odd) {
@@ -76,45 +77,6 @@ $.dynatableSetup({
     perPageSelect: false
   }
 });
-
-function pad(number, length) {
-
-    var str = '' + number;
-    while (str.length < length) {
-        str = '0' + str;
-    }
-
-    return str;
-
-}
-
-function secToTime(seconds)
-{
-  var hh = Math.floor(seconds / 3600);
-  var ss = seconds - (hh * 3600);
-  var mm = Math.floor(ss / 60);
-  ss = Math.floor(ss - (mm * 60));
-
-  return pad(hh, 1) +":" + pad(mm,2) + ":" + pad(ss,2);
-}
-
-function timeToSec(time)
-{
-  var splitted = time.split(":");
-  if (splitted.length < 2)
-  {
-    return Math.floor(time);
-  }
-  else if (splitted.length == 2)
-  { // mm:ss
-    return Math.floor(splitted[0])*60 + Math.floor(splitted[1]);
-  }
-  else if (splitted.length == 3)
-  { // hh:mm:ss
-    return Math.floor(splitted[0])*3600 + Math.floor(splitted[1])*60 + Math.floor(splitted[2]);
-  }
-  return -1;
-}
 
 // Function that renders the list items from our records
 function rowWriter(rowIndex, record, columns, cellWriter) {

@@ -51,6 +51,10 @@ compile '/relay/*' do
   end
 end
 
+compile '/js/*' do
+  nil
+end
+
 compile '*' do
   if item.binary?
     # don’t filter binary items
@@ -74,6 +78,10 @@ end
 
 route '/stylesheet/' do
   '/style.css'
+end
+
+route '/js/*' do
+  item.identifier.chop + ".js"
 end
 
 route '/CNAME' do
