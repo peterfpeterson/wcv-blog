@@ -9,6 +9,28 @@
 <div id="map"></div>
 
 <script>
+<% if !@item[:gps_center] %>
+d3.json('<%= @item[:map] %>',
+  function(error, topology) {
+    var center = d3.geo.centroid(topology);
+    var bounds = d3.geo.bounds(topology);
+
+    var p = d3.select("#map").append("p");
+    p.append("b").text("Please add the following to the config:");
+
+    p.append("code").append("pre").text("gps_center: lat:"+center[1].toFixed(3)
+                +", lng:"+center[0].toFixed(3)+"\n"
+
+                +"gps_sw: "+bounds[0][1].toFixed(3)
+                +","+bounds[0][0].toFixed(3)+"\n"
+
+                +"gps_ne: "+bounds[1][1].toFixed(3)
+                +","+bounds[1][0].toFixed(3));
+  }
+);
+
+<% else %>
+
 var map = new google.maps.Map(d3.select("#map").node(),
                   {zoom: 7,
                    center: {<%= @item[:gps_center] %>}});
@@ -63,5 +85,7 @@ map.data.setStyle(function(feature) {
   return {title: "Leg "+feature.getProperty('leg')
                  +": "+feature.getProperty("miles")+" miles"};
 });
+<% end %>
 </script>
+
 <% end %>
