@@ -1,6 +1,7 @@
 ---
 title: Pace Calculation
 layout: default
+default_time: "3:30:00"
 ---
 <%= web_api("/assests/javascript/dynatable-0.3.1/vendor/jquery-1.7.2.min.js") %>
 <%= web_api("/assests/javascript/dynatable-0.3.1/jquery.dynatable.js") %>
@@ -13,12 +14,19 @@ tbody tr:nth-child(odd) {
 </style>
 
 <p id="inputs">I will run my marathon in
-<input type="text" name="time" id="inTime" value="3:30:00"/> hh:mm:ss
+<input type="text" name="time" id="inTime" value="<%= @item[:default_time] %>"/> hh:mm:ss
 </p>
 
 <table id="my-final-table">
   <thead>
+    <th></th>
+    <th colspan="2">Even</th>
+    <th colspan="2">Meyers</th>
+  </thead>
+  <thead>
     <th>Distance</th>
+    <th>Pace</th>
+    <th>Cumulative</th>
     <th>Pace</th>
     <th>Cumulative</th>
   </thead>
@@ -33,21 +41,41 @@ var $table = $('#my-final-table');
 function toJsonTable(minutes, seconds)
 {
   seconds = 60*minutes+seconds;
+  var totalTime = seconds*26.2;
+
+  // first element is to do nothing during mile zero
+  // the time spent on last .2 is +.8639
+  var meyersPace = [0,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,
+                    3.7560,3.7560,3.7560,3.7560,3.8086,3.8086,3.8086,3.8086,
+                    3.8086,3.8086,3.8725,3.8725,3.8725,3.8725,3.8725,3.9500,
+                    3.9500,3.9500];
+  var totalTime = seconds*26.2;
+  for (i =0; i< meyersPace.length; i++)
+  {
+    meyersPace[i] = meyersPace[i] * totalTime *.01
+  }
 
   var data = [];
+  var meyersSum = 0;
   for (i=0; i<26; i++) {
-    data.push({distance:i+" mile",pace:seconds,cumulative:(seconds*i)});
+    data.push({distance:i+" mile",
+               evenPace:seconds,evenCumul:(seconds*i),
+               meyersPace:meyersPace[i], meyersCumul:meyersSum});
+    meyersSum = meyersSum + meyersPace[i+1];
   }
-  data.push({distance:"26.2 mile",pace:seconds,cumulative:(seconds*26.2)});
+  meyersSum = meyersSum + .008639*totalTime;
+  data.push({distance:"26.2 mile",
+             evenPace:seconds,evenCumul:(seconds*26.2),
+             meyersPace:meyersPace[26],meyersCumul:meyersSum});
   return data;
 }
-var data = toJsonTable(8,0);
+var data = toJsonTable(0,timeToSec("<%= @item[:default_time] %>")/26.2);
 
 function updateTable()
 {
   var distance = 26.2;
   var time = $('#inTime').val();
-  var pace = Math.floor(timeToSec(time) / distance);
+  var pace = timeToSec(time) / distance;
 
   var dynatable = $('#my-final-table').data('dynatable');
   dynatable.settings.dataset.originalRecords = toJsonTable(0, pace);
@@ -78,8 +106,10 @@ $.dynatableSetup({
 function rowWriter(rowIndex, record, columns, cellWriter) {
   var row = '<tr>';
   row = row + "<td>" + record.distance + "</td>";
-  row = row + "<td><center>" + secToTime(record.pace) + "</center></td>";
-  row = row + "<td><center>" + secToTime(record.cumulative) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.evenPace) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.evenCumul) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.meyersPace) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.meyersCumul) + "</center></td>";
   // if (rowIndex % 3 === 0) { cssClass += ' first'; }
   // li = '<li class="' + cssClass + '"><div class="thumbnail"><div class="thumbnail-image">' + record.thumbnail + '</div><div class="caption">' + record.caption + '</div></div></li>';
   row = row + '</tr>'
