@@ -4,7 +4,7 @@
   <title>White Cargo Van - Blue Ridge Relay 2014</title>
   <link rel="stylesheet" href="/style.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="generator" content="nanoc 3.6.9">
+  <meta name="generator" content="nanoc 3.6.11">
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="Blue Ridge 2014 Relay Race Information">
   <!-- apis for maps -->
@@ -62,6 +62,8 @@
 <div id="map"></div>
 
 <script>
+
+
 var map = new google.maps.Map(d3.select("#map").node(),
                   {zoom: 7,
                    center: {lat:36.08247, lng:-81.95879}});
@@ -116,7 +118,9 @@ map.data.setStyle(function(feature) {
   return {title: "Leg "+feature.getProperty('leg')
                  +": "+feature.getProperty("miles")+" miles"};
 });
+
 </script>
+
 
 
 <div id="footerbg"></div>

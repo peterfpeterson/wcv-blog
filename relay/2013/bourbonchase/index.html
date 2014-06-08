@@ -4,12 +4,10 @@
   <title>White Cargo Van - Bourbon Chase 2013</title>
   <link rel="stylesheet" href="/style.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="generator" content="nanoc 3.6.9">
+  <meta name="generator" content="nanoc 3.6.11">
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="Bourbon Chase 2013 Relay Race Information">
-  <!-- apis for maps -->
-  <script charset="utf-8" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-  <script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
+  
   <!-- info for goolge analytics -->
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -57,72 +55,6 @@
       and <a href="http://143.95.94.190/files/resources/BC2013-Final-Results-by-Division.pdf">By Division</a></li>
 </ul>
 
-
-<style>
-  #map {
-    width:  100%;
-    height: 500px;
-  }
-</style>
-
-<div id="map"></div>
-
-<script>
-var map = new google.maps.Map(d3.select("#map").node(),
-                  {zoom: 7,
-                   center: {}});
-// add the data
-map.data.loadGeoJson('/relay/maps/2013BourbonChase.json');
-
-// set the boundaries
-var southWest = new google.maps.LatLng();
-var northEast = new google.maps.LatLng();
-var bounds = new google.maps.LatLngBounds(southWest,northEast);
-map.fitBounds(bounds);
-
-// add listeners
-map.data.addListener('click', function(event) {
-var url = event.latLng.toUrlValue();
-  if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) { // |iPhone|iPod don't work
-    url = "https://maps.apple.com/?q=" + url;
-    window.location = url;
-  }
-  else
-  {
-    url = "https://www.google.com/maps/place/" + url;
-    window.open(url);
-  }
-});
-map.data.addListener('mouseover', function(event) {
-  //console.log(event);
-  //console.log(event.feature.j);
-  //console.log("http://maps.apple.com/?ll=" +event.latLng.toUrlValue());
-});
-map.data.addListener('mouseout', function(event) {
-  map.data.revertStyle();
-});
-
-// Origins, anchor positions and coordinates of the marker
-// increase in the X direction to the right and in
-// the Y direction down.
-//var image = {
-//  url: 'images/beachflag.png',
-  // This marker is 20 pixels wide by 32 pixels tall.
-//  size: new google.maps.Size(20, 32),
-  // The origin for this image is 0,0.
-//  origin: new google.maps.Point(0,0),
-  // The anchor for this image is the base of the flagpole at 0,32.
-//  anchor: new google.maps.Point(0, 32)
-//};
-
-// set up the markers and titles
-map.data.setStyle(function(feature) {
-  //console.log(feature);
-  // also should return the icon
-  return {title: "Leg "+feature.getProperty('leg')
-                 +": "+feature.getProperty("miles")+" miles"};
-});
-</script>
 
 
 </div>
