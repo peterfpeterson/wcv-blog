@@ -71,20 +71,29 @@ function secToTime(seconds)
 
 function timeToSec(time)
 {
+  // split the time and convert to a float
   var splitted = time.split(":");
+  for (i=0; i<splitted.length; i++) {
+    splitted[i] = parseFloat(splitted[i]);
+  }
+
+  // convert to seconds
   if (splitted.length < 2)
-  {
-    return Math.floor(time);
+  { // ss
+    return splitted[0]*60;
   }
   else if (splitted.length == 2)
   { // mm:ss
-    return Math.floor(splitted[0])*60 + Math.floor(splitted[1]);
+    return splitted[0]*60 + splitted[1];
   }
   else if (splitted.length == 3)
   { // hh:mm:ss
-    return Math.floor(splitted[0])*3600 + Math.floor(splitted[1])*60 + Math.floor(splitted[2]);
+    return splitted[0]*3600 + splitted[1]*60 + splitted[2];
   }
-  return -1;
+  else
+  {
+    return -1;
+  }
 }
 
 // Function that renders the list items from our records
