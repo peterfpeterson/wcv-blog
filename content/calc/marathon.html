@@ -2,33 +2,57 @@
 title: Pace Calculation
 layout: default
 default_time: "3:30:00"
+default_start: "08:00"
 ---
 <%= web_api("/assests/javascript/dynatable-0.3.1/vendor/jquery-1.7.2.min.js") %>
 <%= web_api("/assests/javascript/dynatable-0.3.1/jquery.dynatable.js") %>
 <%= web_api("/js/time.js") %>
 
 <style>
+table {
+  border-collapse: collapse;
+}
 tbody tr:nth-child(odd) {
-   background-color: #e3e3e3;
+  background-color: #e3e3e3;
+}
+th {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+th.lower:nth-of-type(2) {
+  border-left: 2px solid black;
+}
+td:nth-of-type(2) {
+  border-left: 2px solid black;
+}
+th.lower:nth-of-type(5) {
+  border-left: 2px solid black;
+}
+td:nth-of-type(5) {
+  border-left: 2px solid black;
 }
 </style>
 
 <p id="inputs">I will run my marathon in
-<input type="text" name="time" id="inTime" value="<%= @item[:default_time] %>"/> hh:mm:ss
+<input type="text" name="total" id="inTime" pattern="[0-9:]" value="<%= @item[:default_time] %>"/> hh:mm:ss
+<br/>
+The race starts at <input type="time" name="start" id="inStart" value="<%= @item[:default_start] %>"/>
 </p>
 
 <table id="my-final-table">
   <thead>
     <th></th>
-    <th colspan="2">Even</th>
-    <th colspan="2">Meyers</th>
+    <th colspan="3">Even</th>
+    <th colspan="3">Meyers</th>
   </thead>
   <thead>
-    <th>Distance</th>
-    <th>Pace</th>
-    <th>Cumulative</th>
-    <th>Pace</th>
-    <th>Cumulative</th>
+    <th class="lower">Distance</th>
+    <th class="lower">Pace</th>
+    <th class="lower">Cumulative</th>
+    <th class="lower">TOD</th>
+    <th class="lower">Pace</th>
+    <th class="lower">Cumulative</th>
+    <th class="lower">TOD</th>
   </thead>
   <tbody>
   </tbody>
@@ -38,57 +62,77 @@ tbody tr:nth-child(odd) {
 var $table = $('#my-final-table');
 
 // create the data
-function toJsonTable(minutes, seconds)
+function toJsonTable(totalTime, startTime)
 {
-  seconds = 60*minutes+seconds;
-  var totalTime = seconds*26.2;
+  var evenPace = totalTime/26.2;
 
   // first element is to do nothing during mile zero
   // the time spent on last .2 is +.8639
-  var meyersPace = [0,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,
+  var meyersPace = [3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,3.7560,
                     3.7560,3.7560,3.7560,3.7560,3.8086,3.8086,3.8086,3.8086,
                     3.8086,3.8086,3.8725,3.8725,3.8725,3.8725,3.8725,3.9500,
                     3.9500,3.9500];
-  var totalTime = seconds*26.2;
   for (i =0; i< meyersPace.length; i++)
   {
     meyersPace[i] = meyersPace[i] * totalTime *.01
   }
 
   var data = [];
-  var meyersSum = 0;
-  for (i=0; i<26; i++) {
-    data.push({distance:i+" mile",
-               evenPace:seconds,evenCumul:(seconds*i),
-               meyersPace:meyersPace[i], meyersCumul:meyersSum});
-    meyersSum = meyersSum + meyersPace[i+1];
+  var meyersSum = meyersPace[1];
+
+  // first add an empty line for start
+  data.push({distance:"start",
+             evenPace:-1,evenCumul:-1,evenTOD:startTime,
+             meyersPace:-1, meyersCumul:-1,meyersTOD:startTime});
+
+  if (totalTime == -1)
+  {
+    for (i=1; i<26; i++) {
+      data.push({distance:i+" mile",
+                 evenPace:-1,evenCumul:-1,evenTOD:startTime,
+                 meyersPace:-1, meyersCumul:-1,meyersTOD:startTime});
+    }
+    data.push({distance:"26.2 mile",
+               evenPace:-1,evenCumul:-1,evenTOD:startTime,
+               meyersPace:-1, meyersCumul:-1,meyersTOD:startTime});
   }
-  meyersSum = meyersSum + .008639*totalTime;
-  data.push({distance:"26.2 mile",
-             evenPace:seconds,evenCumul:(seconds*26.2),
-             meyersPace:meyersPace[26],meyersCumul:meyersSum});
+  else
+  {
+    for (i=1; i<26; i++) {
+      data.push({distance:i+" mile",
+                 evenPace:evenPace,evenCumul:(evenPace*i),
+                 evenTOD:(startTime+evenPace*i),
+                 meyersPace:meyersPace[i], meyersCumul:meyersSum,
+                 meyersTOD:(startTime+meyersSum)});
+      meyersSum = meyersSum + meyersPace[i];
+    }
+    meyersSum = meyersSum + .008639*totalTime;
+    data.push({distance:"26.2 mile",
+               evenPace:evenPace,evenCumul:(evenPace*26.2),
+               evenTOD:(startTime+evenPace*i),
+               meyersPace:meyersPace[25],meyersCumul:meyersSum,
+               meyersTOD:(startTime+meyersSum)});
+  }
   return data;
 }
-var data = toJsonTable(0,timeToSec("<%= @item[:default_time] %>")/26.2);
+var data = toJsonTable(timeToSec("<%= @item[:default_time] %>"),
+                       timeToSec("<%= @item[:default_start] %>"+":00"));
 
 function updateTable()
 {
   var distance = 26.2;
-  var time = $('#inTime').val();
-  var pace = timeToSec(time) / distance;
+  var totalTime = $('#inTime').val();
+  var startTime = $('#inStart').val()+":00";
 
   var dynatable = $('#my-final-table').data('dynatable');
-  dynatable.settings.dataset.originalRecords = toJsonTable(0, pace);
+  dynatable.settings.dataset.originalRecords = toJsonTable(timeToSec(totalTime),
+                                                           timeToSec(startTime));
   dynatable.process();
 }
 
+// bind the inputs to update the table
 var $inputs = $('#inputs');
 $inputs.bind('input', updateTable);
-
-$(document).ready(function(){
-    $('#inDistance').change(function(){ updateTable(); });
-    $('#inTime').change(function(){ updateTable(); });
-});
 
 // configure how the table fills in
 $.dynatableSetup({
@@ -106,10 +150,12 @@ $.dynatableSetup({
 function rowWriter(rowIndex, record, columns, cellWriter) {
   var row = '<tr>';
   row = row + "<td>" + record.distance + "</td>";
-  row = row + "<td><center>" + secToTime(record.evenPace) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.evenPace,2) + "</center></td>";
   row = row + "<td><center>" + secToTime(record.evenCumul) + "</center></td>";
-  row = row + "<td><center>" + secToTime(record.meyersPace) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.evenTOD) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.meyersPace,2) + "</center></td>";
   row = row + "<td><center>" + secToTime(record.meyersCumul) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.meyersTOD) + "</center></td>";
   // if (rowIndex % 3 === 0) { cssClass += ' first'; }
   // li = '<li class="' + cssClass + '"><div class="thumbnail"><div class="thumbnail-image">' + record.thumbnail + '</div><div class="caption">' + record.caption + '</div></div></li>';
   row = row + '</tr>'
