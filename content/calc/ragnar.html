@@ -59,7 +59,7 @@ on <input type="date" name="startDate" id="inStartDate" value="2014-10-24"/>
 
   </thead>
   <thead>
-    <th class="lower">Leg</th>
+    <th class="lower" dynatable-sort-header="1">Leg</th>
     <th class="lower">Mile</th>
     <th class="lower">Num</th>
     <th class="lower" data-dynatable-no-sort="1">Name</th>
@@ -87,6 +87,8 @@ runners.push({num:4, name:"Rich", pace:470});
 runners.push({num:5, name:"Gracie", pace:600});
 runners.push({num:6, name:"Rocky", pace:610});
 
+var actStart = [];
+
 function updateResults()
 {
   // reset the results
@@ -111,31 +113,12 @@ function updateResults()
   for ( var i=0; i<map.length-1; i++)
   {
     var j = i % 6;
-    if (i == 0)
-    {
-      addLeg(map[i].properties, runners[j], estStart);
-    }
-    else
-    {
-      addLeg(map[i].properties, runners[j], -1);
-    }
+    addLeg(map[i].properties, runners[j], actStart[i]);
   }
   results.push({leg:37, miles:0,
                 runNum:"-", runName:"-",
                 estStart:estStart, estTime:-1,
                 actStart:-1, actTime:-1, pace:-1});
-  // addLeg(map[0].properties,  runners[0]);
-  // addLeg(map[1].properties,  runners[1]);
-  // addLeg(map[2].properties,  runners[2]);
-  // addLeg(map[3].properties,  runners[3]);
-  // addLeg(map[4].properties,  runners[4]);
-  // addLeg(map[5].properties,  runners[5]);
-  // addLeg(map[6].properties,  runners[0]);
-  // addLeg(map[7].properties,  runners[1]);
-  // addLeg(map[8].properties,  runners[2]);
-  // addLeg(map[9].properties,  runners[3]);
-  // addLeg(map[10].properties, runners[4]);
-  // addLeg(map[11].properties, runners[5]);
 }
 
 // create the data
@@ -146,10 +129,16 @@ function toJsonTable()
     $.getJSON( "/relay/maps/2013RagnarTennessee.json", function(data)
     {
       map = data.features;
+      for (i=0; i<map.length-1; i++)
+      {
+        actStart.push(-1);
+      }
 
       updateResults();
 
       var dynatable = $('#result-table').data('dynatable');
+      dynatable.sorts.clear();
+      dynatable.sorts.add('leg', 1) // 1=ASCENDING, -1=DESCENDING
       dynatable.settings.dataset.originalRecords = results;
       dynatable.process();
       return results;
