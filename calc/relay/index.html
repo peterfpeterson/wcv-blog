@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>White Cargo Van - Ragnar Log Sheet</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="nanoc 3.7.1">
+  
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/stylesheet.css">
+
+  <script charset="utf-8" src="/js/vendor/modernizr-2.6.2.min.js"></script>
+  
+  <!-- info for goolge analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49930554-1', 'whitecargovan.com');
+  ga('send', 'pageview');
+  </script>
+</head>
+<body>
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+<div id="main">
+  <script charset="utf-8" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+<script charset="utf-8" src="/js/vendor/dynatable-0.3.1.js"></script>
+<script charset="utf-8" src="/js/time.js"></script>
+
+<style>
+table {
+  border-collapse: collapse;
+}
+tbody tr:nth-child(odd) {
+  background-color: #e3e3e3;
+}
+th {
+  text-align: center;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+th.lower:nth-of-type(3) {
+  border-left: 2px solid black;
+}
+td:nth-of-type(3) {
+  border-left: 2px solid black;
+}
+th.lower:nth-of-type(5) {
+  border-left: 2px solid black;
+}
+td:nth-of-type(5) {
+  border-left: 2px solid black;
+}
+th.lower:nth-of-type(7) {
+  border-left: 2px solid black;
+}
+td {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+td:nth-of-type(7) {
+  border-left: 2px solid black;
+}
+</style>
+
+<p id="inputs">
+The race starts at <input type="time" name="inStartTime" id="inStartTime" value="12:00"/>
+on <input type="date" name="startDate" id="inStartDate" value="2014-10-24"/>
+</p>
+
+<table id="result-table">
+  <thead>
+    <th class="upper" data-dynatable-no-sort="1" colspan="2"></th>
+    <th class="upper" data-dynatable-no-sort="1" colspan="2">Runner</th>
+    <th class="upper" data-dynatable-no-sort="1" colspan="2">Estimated</th>
+    <th class="upper" data-dynatable-no-sort="1" colspan="3">Actual</th>
+
+  </thead>
+  <thead>
+    <th class="lower" dynatable-sort-header="1">Leg</th>
+    <th class="lower">Mile</th>
+    <th class="lower">Num</th>
+    <th class="lower" data-dynatable-no-sort="1">Name</th>
+    <th class="lower">Start</th>
+    <th class="lower" data-dynatable-no-sort="1">Elaps</th>
+    <th class="lower">Start</th>
+    <th class="lower" data-dynatable-no-sort="1">Elaps</th>
+    <th class="lower">Pace</th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+var $table = $('#result-table');
+
+var map;
+var results;
+
+var runners = [];
+runners.push({num:1,  name:"January", pace:480});
+runners.push({num:2,  name:"February", pace:510});
+runners.push({num:3,  name:"March", pace:540});
+runners.push({num:4,  name:"April", pace:470});
+runners.push({num:5,  name:"May", pace:600});
+runners.push({num:6,  name:"June", pace:610});
+runners.push({num:7,  name:"July", pace:480});
+runners.push({num:8,  name:"August", pace:510});
+runners.push({num:9,  name:"September", pace:540});
+runners.push({num:10, name:"October", pace:470});
+runners.push({num:11, name:"November", pace:600});
+runners.push({num:12, name:"December", pace:610});
+
+var actStart = [];
+
+function updateResults()
+{
+  // reset the results
+  results = [];
+
+  var estStart = $('#inStartTime').val() + ":00";
+  estStart = timeToSec(estStart);
+  var startDate = $('#inStartDate').val();
+
+  function addLeg(leg, runner, actStart)
+  {
+    results.push({leg:leg.leg, miles:leg.miles,
+                    runNum:runner.num, runName:runner.name,
+                    estStart:estStart,
+                    estTime:(leg.miles*runner.pace),
+                    actStart:actStart,
+                    actTime:-1,
+                    pace:-1});
+    estStart = estStart + (leg.miles*runner.pace);
+  }
+
+  for ( var i=0; i<map.length-1; i++)
+  {
+    var j = i % runners.length;
+    addLeg(map[i].properties, runners[j], actStart[i]);
+  }
+  results.push({leg:37, miles:0,
+                runNum:"-", runName:"-",
+                estStart:estStart, estTime:-1,
+                actStart:-1, actTime:-1, pace:-1});
+}
+
+// create the data
+function toJsonTable()
+{
+  if (typeof(map) == "undefined")
+  {
+    $.getJSON( "/relay/maps/2013RagnarTennessee.json", function(data)
+    {
+      map = data.features;
+      for (i=0; i<map.length-1; i++)
+      {
+        actStart.push(-1);
+      }
+
+      updateResults();
+
+      var dynatable = $('#result-table').data('dynatable');
+      dynatable.sorts.clear();
+      dynatable.sorts.add('leg', 1) // 1=ASCENDING, -1=DESCENDING
+      dynatable.settings.dataset.originalRecords = results;
+      dynatable.process();
+      return results;
+    });
+  }
+  else
+  {
+    updateResults();
+
+    var dynatable = $('#result-table').data('dynatable');
+    dynatable.settings.dataset.originalRecords = results;
+    dynatable.process();
+  }
+}
+
+results = toJsonTable();
+
+function updateTable()
+{
+  var dynatable = $('#result-table').data('dynatable');
+  dynatable.settings.dataset.originalRecords = toJsonTable();
+  dynatable.process();
+}
+
+// bind the inputs to update the table
+var $inputs = $('#inputs');
+$inputs.bind('input', updateTable);
+
+// configure how the table fills in
+$.dynatableSetup({
+  features: {
+    paginate: false,
+    sort: true,
+    pushState: true,
+    search: false,
+    recordCount: false,
+    perPageSelect: false
+  }
+});
+
+// Function that renders the list items from our records
+function rowWriter(rowIndex, record, columns, cellWriter) {
+  var row = '<tr>';
+  row = row + "<td><center>" + pad(record.leg,2) + "</center></td>";
+  row = row + "<td><center>" + record.miles + "</center></td>";
+  row = row + "<td><center>" + record.runNum + "</center></td>";
+  row = row + "<td><center>" + record.runName + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.estStart) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.estTime) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.actStart) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.actTime) + "</center></td>";
+  row = row + "<td><center>" + secToTime(record.pace,2) + "</center></td>";
+  row = row + '</tr>'
+  return row;
+}
+
+// link the json data to the table
+$('#result-table').dynatable({
+  dataset: {
+    records: results
+  },
+  writers: {
+    _rowWriter: rowWriter
+  }
+});
+// dynatable.dom.update();
+</script>
+</div>
+<div id="footerbg"></div>
+<div id="footer">
+
+
+
+
+
+
+<span class="about">
+<a href="/about">About White Cargo Van</a>
+</span>
+
+<span class="social">
+<!-- twitter -->
+<a href="https://twitter.com/intent/tweet?url=http://www.whitecargovan.com/calc/relay/&text=Ragnar%20Log%20Sheet&via=WhiteCargoVan" target="_blank">Twitter</a>,
+<!-- facebook like -->
+<a href="https://facebook.com/sharer.php?u=http://www.whitecargovan.com/calc/relay/" target="_blank">Facebook</a>,
+<!-- g+ -->
+<a href="https://plus.google.com/share?url=http://www.whitecargovan.com/calc/relay/" target="_blank">Google+</a>,
+<!-- pinterest &media=URL of image to pin
+<a href="http://pinterest.com/pin/create/button/?url=http://www.whitecargovan.com/calc/relay/&description=Ragnar%20Log%20Sheet" target="_blank">Pinterest</a>,
+-->
+<!-- digg -->
+<a href="http://digg.com/submit?url=http://www.whitecargovan.com/calc/relay/" target="_blank">Digg</a>,
+<!-- reddit -->
+<a href="http://reddit.com/submit?url=http://www.whitecargovan.com/calc/relay/&title=Ragnar%20Log%20Sheet" target="_blank">Reddit</a>,
+<!-- email -->
+<a href="mailto:?subject=White%20Cargo%20Van%20-%20Ragnar%20Log%20Sheet&body=http://www.whitecargovan.com/calc/relay/" target="_blank">Email</a>
+</span>
+</div>
+</body>
+</html>
+

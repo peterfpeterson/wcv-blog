@@ -10,19 +10,31 @@
   </url>
   <url>
     <loc>http://www.whitecargovan.com/calc/marathon/</loc>
-    <lastmod>2014-06-08</lastmod>
+    <lastmod>2014-07-15</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/calc/pace/</loc>
-    <lastmod>2014-07-14</lastmod>
+    <lastmod>2014-07-15</lastmod>
   </url>
   <url>
-    <loc>http://www.whitecargovan.com/calc/ragnar/</loc>
-    <lastmod>2014-06-09</lastmod>
+    <loc>http://www.whitecargovan.com/calc/relay/</loc>
+    <lastmod>2014-07-15</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/css/main.css</loc>
+    <lastmod>2014-07-15</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/css/normalize.css</loc>
+    <lastmod>2014-07-15</lastmod>
+  </url>
+  <url>
+    <loc>http://www.whitecargovan.com/css/stylesheet.css</loc>
+    <lastmod>2014-04-22</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/js/time.js</loc>
-    <lastmod>2014-06-09</lastmod>
+    <lastmod>2014-07-14</lastmod>
   </url>
   <url>
     <loc>http://www.whitecargovan.com/relay/</loc>
@@ -111,9 +123,5 @@
   <url>
     <loc>http://www.whitecargovan.com/sitemap.xml</loc>
     <lastmod>2014-05-30</lastmod>
-  </url>
-  <url>
-    <loc>http://www.whitecargovan.com/style.css</loc>
-    <lastmod>2014-04-22</lastmod>
   </url>
 </urlset>
