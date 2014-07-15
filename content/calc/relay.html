@@ -51,22 +51,23 @@ on <input type="date" name="startDate" id="inStartDate" value="2014-10-24"/>
 </p>
 
 <table id="result-table">
-  <thead>
-    <th class="upper" data-dynatable-no-sort="1" colspan="2"></th>
-    <th class="upper" data-dynatable-no-sort="1" colspan="2">Runner</th>
-    <th class="upper" data-dynatable-no-sort="1" colspan="2">Estimated</th>
-    <th class="upper" data-dynatable-no-sort="1" colspan="3">Actual</th>
-
+  <!--
+  <thead class="upper">
+    <th data-dynatable-no-sort="1" colspan="2"></th>
+    <th data-dynatable-no-sort="1" colspan="2">Runner</th>
+    <th data-dynatable-no-sort="1" colspan="2">Estimated</th>
+    <th data-dynatable-no-sort="1" colspan="3">Actual</th>
   </thead>
-  <thead>
+  -->
+  <thead class="lower">
     <th class="lower" dynatable-sort-header="1">Leg</th>
-    <th class="lower">Mile</th>
-    <th class="lower">Num</th>
-    <th class="lower" data-dynatable-no-sort="1">Name</th>
-    <th class="lower">Start</th>
-    <th class="lower" data-dynatable-no-sort="1">Elaps</th>
-    <th class="lower">Start</th>
-    <th class="lower" data-dynatable-no-sort="1">Elaps</th>
+    <th class="lower">Miles</th>
+    <th class="lower" data-dynatable-column="runNum">Num</th>
+    <th class="lower" data-dynatable-column="runName" data-dynatable-no-sort="1">Name</th>
+    <th class="lower" data-dynatable-column="estStart">Start</th>
+    <th class="lower" data-dynatable-column="estTime" data-dynatable-no-sort="1">Elaps</th>
+    <th class="lower" data-dynatable-column="actStart">Start</th>
+    <th class="lower" data-dynatable-column="actStart" data-dynatable-no-sort="1">Elaps</th>
     <th class="lower">Pace</th>
   </thead>
   <tbody>
@@ -122,7 +123,7 @@ function updateResults()
     addLeg(map[i].properties, runners[j], actStart[i]);
   }
   results.push({leg:37, miles:0,
-                runNum:"-", runName:"-",
+                runNum:13, runName:"-",
                 estStart:estStart, estTime:-1,
                 actStart:-1, actTime:-1, pace:-1});
 }
@@ -185,30 +186,59 @@ $.dynatableSetup({
   }
 });
 
-// Function that renders the list items from our records
-function rowWriter(rowIndex, record, columns, cellWriter) {
-  var row = '<tr>';
-  row = row + "<td><center>" + pad(record.leg,2) + "</center></td>";
-  row = row + "<td><center>" + record.miles + "</center></td>";
-  row = row + "<td><center>" + record.runNum + "</center></td>";
-  row = row + "<td><center>" + record.runName + "</center></td>";
-  row = row + "<td><center>" + secToTime(record.estStart) + "</center></td>";
-  row = row + "<td><center>" + secToTime(record.estTime) + "</center></td>";
-  row = row + "<td><center>" + secToTime(record.actStart) + "</center></td>";
-  row = row + "<td><center>" + secToTime(record.actTime) + "</center></td>";
-  row = row + "<td><center>" + secToTime(record.pace,2) + "</center></td>";
-  row = row + '</tr>'
-  return row;
-}
-
 // link the json data to the table
 $('#result-table').dynatable({
+  table: {
+    headRowClass: ".lower"
+  },
   dataset: {
-    records: results
+    records: results,
+    sorts: { leg: 1 },
   },
   writers: {
-    _rowWriter: rowWriter
-  }
+    'leg': function(record) {
+      return pad(record.leg,2);
+    },
+    // 'runNum': function(record) {
+    //   if (record.runNum == 13) {
+    //     return "-";
+    //   } else {
+    //     return record.runNum.toStr();
+    //   }
+    // },
+    'estStart': function(record) {
+      return secToTime(record.estStart);
+    },
+    'estTime': function(record) {
+      return secToTime(record.estTime);
+    },
+    'actStart': function(record) {
+      return secToTime(record.actStart);
+    },
+    'actTime': function(record) {
+      return secToTime(record.actTime);
+    },
+    'pace': function(record) {
+      return secToTime(record.pace,2);
+    }
+  },
+  readers: {
+    // 'runNum': function(el, record) {
+      // var $el = $(el);
+
+      // record['runNum'] = Number(el.innerHTML) || 7;
+      // return record['runNum'];
+      // try {
+      //   return Number(el.innerHTML) || 7;
+      // } catch (e) {
+      //   return 13;
+      // }
+    // }
+    // 'leg': function(el, record) {
+    //   return Number(el.innerHTML);
+    // }
+    // _rowReader: rowReader
+  },
 });
 // dynatable.dom.update();
 </script>
