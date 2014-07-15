@@ -62,4 +62,4 @@ data_sources:
     allow_periods_in_identifiers: false
   -
     type: static
-    items_root: /assests/
+    items_root: /
