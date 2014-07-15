@@ -1,13 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-  <title>White Cargo Van - <%= @item[:title] %></title>
-  <link rel="stylesheet" href="/css/stylesheet.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
-  <meta name="viewport" content="width=device-width">
-  <% if @item[:title] == "Home" %><meta name="wot-verification" content="b4e4a30aca55fec60ae9"/><% end %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>White Cargo Van - <%= @item[:title] %></title>
   <% if @item[:description] %><meta name="description" content="<%= @item[:description] %>"><% end %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
+  <% if @item[:title] == "Home" %><meta name="wot-verification" content="b4e4a30aca55fec60ae9"/><% end %>
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/stylesheet.css">
+
+  <%= web_api("/js/vendor/modernizr-2.6.2.min.js") %>
   <% if @item[:map] %><!-- apis for maps -->
   <%= web_api("google-maps") %>
   <%= web_api("d3") %><% end %>
@@ -23,3 +33,6 @@
   </script>
 </head>
 <body>
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
