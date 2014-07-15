@@ -4,8 +4,9 @@
   <title>White Cargo Van - Pace Calculation</title>
   <link rel="stylesheet" href="/style.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="generator" content="nanoc 3.6.11">
+  <meta name="generator" content="nanoc 3.7.1">
   <meta name="viewport" content="width=device-width">
+  
   
   
   <!-- info for goolge analytics -->
@@ -71,7 +72,7 @@ function updateTable()
 {
   var distance = $('#inDistance').val();
   var time = $('#inTime').val();
-  var pace = Math.floor(timeToSec(time) / distance);
+  var pace = timeToSec(time) / distance;
 
   var dynatable = $('#my-final-table').data('dynatable');
   dynatable.settings.dataset.originalRecords = toJsonTable(0, pace);
