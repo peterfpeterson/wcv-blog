@@ -12,8 +12,8 @@ module WebApiHelper
     elsif name == "jquery"
         result << "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\"></script>\n  "
         result << "<script>window.jQuery || document.write('<script src=\"/js/vendor/jquery-1.11.1.min.js\"><\\/script>')</script>\n  "
-        result << "<script src=\"js/plugins.js\"></script>\n  "
-        result << "<script src=\"js/main.js"
+        result << "<script src=\"/js/plugins.js\"></script>\n  "
+        result << "<script src=\"/js/main.js"
     else
       # just use the supplied name as is
       result << name
