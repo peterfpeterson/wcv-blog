@@ -20,10 +20,11 @@ ignore '*/*~'
 ignore '#*#'
 ignore '*/#*#'
 
+passthrough '/crossdomain.xml'
+passthrough '/humans.txt'
 passthrough '/js/vendor/*'
 passthrough '/js/main.js'
 passthrough '/js/plugins.js'
-passthrough '/humans.txt'
 passthrough '/robots.txt'
 
 compile '/stylesheet/' do
