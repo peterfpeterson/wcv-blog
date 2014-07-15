@@ -23,6 +23,8 @@ ignore '*/#*#'
 passthrough '/js/vendor/*'
 passthrough '/js/main.js'
 passthrough '/js/plugins.js'
+passthrough '/humans.txt'
+passthrough '/robots.txt'
 
 compile '/stylesheet/' do
   # don’t filter or layout
