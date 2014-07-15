@@ -80,12 +80,18 @@ var map;
 var results;
 
 var runners = [];
-runners.push({num:1, name:"Steve", pace:480});
-runners.push({num:2, name:"Sven", pace:510});
-runners.push({num:3, name:"Dreadmill", pace:540});
-runners.push({num:4, name:"Rich", pace:470});
-runners.push({num:5, name:"Gracie", pace:600});
-runners.push({num:6, name:"Rocky", pace:610});
+runners.push({num:1,  name:"January", pace:480});
+runners.push({num:2,  name:"February", pace:510});
+runners.push({num:3,  name:"March", pace:540});
+runners.push({num:4,  name:"April", pace:470});
+runners.push({num:5,  name:"May", pace:600});
+runners.push({num:6,  name:"June", pace:610});
+runners.push({num:7,  name:"July", pace:480});
+runners.push({num:8,  name:"August", pace:510});
+runners.push({num:9,  name:"September", pace:540});
+runners.push({num:10, name:"October", pace:470});
+runners.push({num:11, name:"November", pace:600});
+runners.push({num:12, name:"December", pace:610});
 
 var actStart = [];
 
@@ -112,7 +118,7 @@ function updateResults()
 
   for ( var i=0; i<map.length-1; i++)
   {
-    var j = i % 6;
+    var j = i % runners.length;
     addLeg(map[i].properties, runners[j], actStart[i]);
   }
   results.push({leg:37, miles:0,
