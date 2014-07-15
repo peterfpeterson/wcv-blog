@@ -51,7 +51,7 @@ function updateTable()
 {
   var distance = $('#inDistance').val();
   var time = $('#inTime').val();
-  var pace = Math.floor(timeToSec(time) / distance);
+  var pace = timeToSec(time) / distance;
 
   var dynatable = $('#my-final-table').data('dynatable');
   dynatable.settings.dataset.originalRecords = toJsonTable(0, pace);
