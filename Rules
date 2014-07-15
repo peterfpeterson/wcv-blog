@@ -30,7 +30,7 @@ passthrough '/js/main.js'
 passthrough '/js/plugins.js'
 passthrough '/robots.txt'
 
-compile '/stylesheet/' do
+compile '/css/*' do
   # don’t filter or layout
 end
 
@@ -80,8 +80,8 @@ compile '*' do
   end
 end
 
-route '/stylesheet/' do
-  '/style.css'
+route '/css/*' do
+item.identifier.chop + ".css"
 end
 
 route '/js/*' do
