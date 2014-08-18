@@ -1,8 +1,10 @@
 Requirements:
+
 * ruby
 * bundle
 
 To look at it
+
 * `bundle update`
 * `bundle exec guard`
 * `bundle exec nanoc view`
