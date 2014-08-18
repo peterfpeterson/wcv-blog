@@ -1,12 +1,12 @@
 Requirements:
- * nanoc
- * adsf
- * kramdown
+* ruby
+* bundle
 
 To look at it
- * `nanoc compile` or `bundle exec nanoc compile`
- * `nanoc view`
- * point a browser at http://localhost:3000/
+* `bundle update`
+* `bundle exec guard`
+* `bundle exec nanoc view`
+* point a browser at http://localhost:3000/
 
 Mavericks with Xcode 5.1
 ------------------------
