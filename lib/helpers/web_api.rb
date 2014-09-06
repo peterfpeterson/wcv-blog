@@ -14,6 +14,8 @@ module WebApiHelper
         result << "<script>window.jQuery || document.write('<script src=\"/js/vendor/jquery-1.11.1.min.js\"><\\/script>')</script>\n  "
         result << "<script src=\"/js/plugins.js\"></script>\n  "
         result << "<script src=\"/js/main.js"
+    elsif name == "jquery-cookie"
+      result << "/js/vendor/jquery.cookie-1.4.1.min.js"
     else
       # just use the supplied name as is
       result << name
