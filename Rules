@@ -21,13 +21,16 @@ ignore '#*#'
 ignore '*/#*#'
 
 passthrough '/404.html'
-passthrough '/apple-touch-icon-precomposed.png'
+passthrough '/apple-touch-icon*.png'
+passthrough '/browserconfig.xml'
 passthrough '/crossdomain.xml'
 passthrough '/favicon.ico'
+passthrough '/favicon*.png'
 passthrough '/humans.txt'
 passthrough '/js/vendor/*'
 passthrough '/js/main.js'
 passthrough '/js/plugins.js'
+passthrough '/mstile*.png'
 passthrough '/robots.txt'
 
 compile '/css/*' do
