@@ -33,6 +33,8 @@ td:nth-of-type(5) {
 }
 </style>
 
+<%= render "partials/breadcrumb" %>
+
 <p id="inputs">I will run my marathon in
 <input type="text" name="total" id="inTime" pattern="[0-9:]" value="<%= @item[:default_time] %>"/> hh:mm:ss
 <br/>
