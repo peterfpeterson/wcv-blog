@@ -1,0 +1,174 @@
+---
+title: You have landed
+---
+{% include header.html %}
+
+<div class="jumbotron">
+  <h2>Random Ramblings</h2>
+  <p>Nothing to see here. Move along.</p>
+</div><!-- /.jumbotron -->
+
+<ul>
+  <li>List of links for <a href="{{ site.baseurl }}/foss">supporting/developing free open source collaborative software</a></li>
+  <li>Random information about <a href="{{ site.baseurl }}/races">various running/cycling/etc races</a></li>
+  <li><a href="{{ site.baseurl }}/races/2018/KentuckianaRagnar">Kentuckiana Ragnar 2018</a></li>
+  <li><a href="{{ site.baseurl }}/lotka_volterra">Lotka-Volterra</a> predator-prey equations</li>
+  <li><a href="{{ site.baseurl }}/time">A collection of clocks</a></li>
+  <li><a href="http://www.die-wedels.org/algorithm_game/">Mantid vs Shmantid</a> is a game written by one of the <a href="http://www.mantidproject.org">mantid</a> developers</li>
+</ul>
+
+<!-- maxwell's equations in cgs -->
+<div class="well">
+<center><table>
+  <caption>Adjusted from <a href="https://en.wikipedia.org/wiki/Maxwell%27s_equations">wikipedia</a></caption>
+
+<!-- Gauss's law -->
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML" >
+  <semantics>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mstyle displaystyle="true" scriptlevel="0">
+        <mi mathvariant="normal">&Del;<!-- ∇ --></mi>
+        <mo>&sdot;<!-- ⋅ --></mo>
+        <mover>
+          <mi>E</mi>
+          <mo>&rarr;</mo>
+        </mover>
+        <mo>=</mo>
+        <mn>4</mn>
+        <mi>&pi;<!-- π --></mi>
+        <mi>&rho;<!-- ρ --></mi>
+      </mstyle>
+    </mrow>
+    <annotation encoding="application/x-tex">{\displaystyle \nabla \cdot \mathbf {E} =4\pi \rho }</annotation>
+  </semantics>
+</math>
+</td></tr>
+
+<!-- Gauss's law for magnetism adjusted for magnetic monopoles -->
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML" >
+  <semantics>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mstyle displaystyle="true" scriptlevel="0">
+        <mi mathvariant="normal">&Del;<!-- ∇ --></mi>
+        <mo>&sdot;<!-- ⋅ --></mo>
+        <mover>
+          <mi>B</mi>
+          <mo>&rarr;</mo>
+        </mover>
+        <mo>=</mo>
+        <mn>4</mn>
+        <mi>&pi;<!-- π --></mi>
+        <msub>
+          <mi>&rho;<!-- ρ --></mi>
+          <mn>b</mn>
+        </msub>
+      </mstyle>
+    </mrow>
+    <annotation encoding="application/x-tex">{\displaystyle \nabla \cdot \mathbf {B} =4\pi \rho_b}</annotation>
+  </semantics>
+</math>
+</td></tr>
+
+<!-- Faraday's law of induction -->
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML" >
+  <semantics>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mstyle displaystyle="true" scriptlevel="0">
+        <mi mathvariant="normal">&Del;<!-- ∇ --></mi>
+        <mo>&Cross;<!-- × --></mo>
+        <mover>
+          <mi>E</mi>
+          <mo>&rarr;</mo>
+        </mover>
+        <mo>=</mo>
+        <mo>&minus;<!-- − --></mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mfrac>
+            <mn>1</mn>
+            <mi>c</mi>
+          </mfrac>
+        </mrow>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mfrac>
+            <mrow>
+              <mi mathvariant="normal">&part;<!-- ∂ --></mi>
+              <mover>
+                <mi>B</mi>
+                <mo>&rarr;</mo>
+              </mover>
+            </mrow>
+            <mrow>
+              <mi mathvariant="normal">&part;<!-- ∂ --></mi>
+              <mi>t</mi>
+            </mrow>
+          </mfrac>
+        </mrow>
+      </mstyle>
+    </mrow>
+    <annotation encoding="application/x-tex">{\displaystyle \nabla \times \mathbf {E} =-{\frac {1}{c}}{\frac {\partial \mathbf {B} }{\partial t}}}</annotation>
+  </semantics>
+</math>
+</td></tr>
+
+<!-- Ampere's law -->
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML" >
+  <semantics>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mstyle displaystyle="true" scriptlevel="0">
+        <mi mathvariant="normal">&Del;<!-- ∇ --></mi>
+        <mo>&Cross;<!-- × --></mo>
+        <mover>
+          <mi>B</mi>
+          <mo>&rarr;</mo>
+        </mover>
+        <mo>=</mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mfrac>
+            <mn>1</mn>
+            <mi>c</mi>
+          </mfrac>
+        </mrow>
+        <mrow>
+          <mo>(</mo>
+          <mn>4</mn>
+          <mi>&pi;<!-- π --></mi>
+          <mover>
+            <mi>J</mi>
+            <mo>&rarr;</mo>
+          </mover>
+          <mo>+</mo>
+          <mrow class="MJX-TeXAtom-ORD">
+            <mfrac>
+              <mrow>
+                <mi mathvariant="normal">&part;<!-- ∂ --></mi>
+                <mover>
+                  <mi>E</mi>
+                  <mo>&rarr;</mo>
+                </mover>
+              </mrow>
+              <mrow>
+                <mi mathvariant="normal">&part;<!-- ∂ --></mi>
+                <mi>t</mi>
+              </mrow>
+            </mfrac>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+      </mstyle>
+    </mrow>
+    <annotation encoding="application/x-tex">{\displaystyle \nabla \times \mathbf {B} ={\frac {1}{c}}\left(4\pi \mathbf {J} +{\frac {\partial \mathbf {E} }{\partial t}}\right)}</annotation>
+  </semantics>
+</math>
+</td></tr>
+
+</table></center>
+</div><!-- /.well -->
+
+<!-- mathjax rendering of mathml -->
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+{% include footer.html %}

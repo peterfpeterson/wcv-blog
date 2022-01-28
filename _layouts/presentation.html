@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+{% include meta.html %}
+{% include remarkjs/css %}
+{% include katex/css %}
+<script src="https://use.fontawesome.com/14ae122dbd.js"></script>
+</head>
+
+<body>
+<textarea id="source">
+{{ page.content }}
+</textarea>
+
+{% include remarkjs/javascript %}
+
+<script type="text/javascript">
+  var slideshow = remark.create({navigation: {scroll: false,}, countIncrementalSlides: false});
+</script>
+
+{% include katex/javascript %}
+{% include katex/render %}
+
+</body>
+</html>
